@@ -104,6 +104,83 @@
   .membro-card.wide { grid-column:span 2; aspect-ratio:3/2; }
   .membro-card.wide .membro-desc { max-height:none; opacity:1; }
 
+  /* ─── LANÇAMENTOS ─── */
+  #lancamentos { background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
+
+  .lanc-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+    margin-top:56px;
+  }
+
+  .lanc-card {
+    background:var(--black);
+    border:1px solid rgba(255,255,255,0.055);
+    overflow:hidden;
+    transition:border-color 0.3s;
+  }
+  .lanc-card:hover { border-color:rgba(180,180,180,0.2); }
+
+  .lanc-video {
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+    background:#000;
+  }
+  .lanc-video iframe {
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    border:none;
+  }
+
+  .lanc-info {
+    padding:20px 22px 24px;
+    border-top:1px solid rgba(255,255,255,0.04);
+  }
+
+  .lanc-badge {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:9px;
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    color:var(--gray-light);
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .lanc-badge::before {
+    content:'';
+    display:block;
+    width:4px; height:4px;
+    background:var(--silver);
+    transform:rotate(45deg);
+    flex-shrink:0;
+  }
+
+  .lanc-title {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:24px;
+    letter-spacing:0.08em;
+    line-height:1;
+    background:var(--metal);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:6px;
+  }
+
+  .lanc-artist {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:12px;
+    letter-spacing:0.15em;
+    color:var(--gray-light);
+    text-transform:uppercase;
+  }
+
   /* ─── CLIPES ─── */
   #clipes { background:var(--black); border-top:1px solid rgba(255,255,255,0.04); }
 
@@ -306,6 +383,7 @@
     .sobre-grid { grid-template-columns:1fr; gap:48px; }
     .membros-grid { grid-template-columns:repeat(2,1fr); }
     .membro-card.wide { grid-column:span 2; aspect-ratio:3/2; }
+    .lanc-grid { grid-template-columns:1fr; }
     .clipes-grid { grid-template-columns:1fr 1fr; }
     .music-layout { grid-template-columns:1fr; }
     .shows-top { flex-direction:column; align-items:flex-start; gap:24px; }
@@ -325,6 +403,7 @@
   <ul class="nav-links">
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#membros">Membros</a></li>
+    <li><a href="#lancamentos">Lançamentos</a></li>
     <li><a href="#clipes">Clipes</a></li>
     <li><a href="#musicas">Música</a></li>
     <li><a href="#shows">Shows</a></li>
@@ -459,6 +538,66 @@
         <div class="membro-name" style="font-size:36px;">SAAD</div>
         <div class="membro-role">Produtor Musical · Compositor · +10 anos de experiência</div>
         <div class="membro-desc">Beats com identidade própria. Não cria apenas instrumentais — desenvolve atmosferas, conceito e direção sonora, transformando sentimento em som.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="lancamentos">
+  <div class="s-label">Novidades</div>
+  <h2 class="s-title">Lançamentos</h2>
+
+  <div class="lanc-grid">
+
+    <!-- LANÇAMENTO 1 — substitua o link do YouTube pelo ID do vídeo -->
+    <div class="lanc-card">
+      <div class="lanc-video">
+        <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID_1?rel=0&modestbranding=1"
+          title="Lançamento 1 — Far South 053"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="lanc-info">
+        <div class="lanc-badge">Novo · 2025</div>
+        <div class="lanc-title">Título do Lançamento 1</div>
+        <div class="lanc-artist">Far South 053</div>
+      </div>
+    </div>
+
+    <!-- LANÇAMENTO 2 -->
+    <div class="lanc-card">
+      <div class="lanc-video">
+        <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID_2?rel=0&modestbranding=1"
+          title="Lançamento 2 — Far South 053"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="lanc-info">
+        <div class="lanc-badge">Single · 2025</div>
+        <div class="lanc-title">Título do Lançamento 2</div>
+        <div class="lanc-artist">Far South 053</div>
+      </div>
+    </div>
+
+    <!-- LANÇAMENTO 3 -->
+    <div class="lanc-card">
+      <div class="lanc-video">
+        <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID_3?rel=0&modestbranding=1"
+          title="Lançamento 3 — Far South 053"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="lanc-info">
+        <div class="lanc-badge">Single · 2025</div>
+        <div class="lanc-title">Título do Lançamento 3</div>
+        <div class="lanc-artist">Far South 053</div>
       </div>
     </div>
 
