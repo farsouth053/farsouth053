@@ -661,23 +661,29 @@
       <a href="https://wa.me/5553997102674" target="_blank" class="btn-main" style="text-align:center;">Chamar no WhatsApp</a>
     </div>
     <div class="booking-right">
-      <div class="form-row">
-        <div class="form-group"><label>Seu Nome</label><input type="text" placeholder="Nome completo"></div>
-        <div class="form-group"><label>E-mail</label><input type="email" placeholder="email@exemplo.com"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Telefone / WhatsApp</label><input type="tel" placeholder="+55 (53) 9 9999-9999"></div>
-        <div class="form-group">
-          <label>Tipo de Evento</label>
-          <select><option value="" disabled selected>Selecione...</option><option>Festival</option><option>Balada / Show</option><option>Evento Privado</option><option>Colaboração Musical</option><option>Outro</option></select>
+      <form id="bookingForm">
+        <input type="hidden" name="access_key" value="25614fc4-cd3a-401c-b98f-81861981aefa">
+        <input type="hidden" name="subject" value="Nova Proposta de Show — Far South 053">
+        <input type="hidden" name="from_name" value="Site Far South 053">
+        <input type="checkbox" name="botcheck" style="display:none;">
+        <div class="form-row">
+          <div class="form-group"><label>Seu Nome</label><input type="text" name="nome" placeholder="Nome completo" required></div>
+          <div class="form-group"><label>E-mail</label><input type="email" name="email" placeholder="email@exemplo.com" required></div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Data do Evento</label><input type="date"></div>
-        <div class="form-group"><label>Cidade / Estado</label><input type="text" placeholder="Ex: Pelotas — RS"></div>
-      </div>
-      <div class="form-group"><label>Mensagem</label><textarea placeholder="Conta mais sobre o evento, estrutura, público esperado, cachê disponível..."></textarea></div>
-      <button class="btn-submit" id="submitBtn">Enviar Proposta</button>
+        <div class="form-row">
+          <div class="form-group"><label>Telefone / WhatsApp</label><input type="tel" name="telefone" placeholder="+55 (53) 9 9999-9999"></div>
+          <div class="form-group">
+            <label>Tipo de Evento</label>
+            <select name="tipo_evento"><option value="" disabled selected>Selecione...</option><option>Festival</option><option>Balada / Show</option><option>Evento Privado</option><option>Colaboração Musical</option><option>Outro</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Data do Evento</label><input type="date" name="data_evento"></div>
+          <div class="form-group"><label>Cidade / Estado</label><input type="text" name="cidade" placeholder="Ex: Pelotas — RS"></div>
+        </div>
+        <div class="form-group"><label>Mensagem</label><textarea name="mensagem" placeholder="Conta mais sobre o evento, estrutura, público esperado, cachê disponível..."></textarea></div>
+        <button type="submit" class="btn-submit" id="submitBtn">Enviar Proposta</button>
+      </form>
     </div>
   </div>
 </section>
@@ -707,10 +713,38 @@
     if (window.scrollY < window.innerHeight) hero.style.transform = `translateY(${window.scrollY * 0.28}px)`;
   }, { passive: true });
 
-  document.getElementById('submitBtn').addEventListener('click', function() {
-    this.textContent = 'Proposta Enviada ✓';
-    this.style.background = 'linear-gradient(135deg,#555 0%,#888 50%,#444 100%)';
-    setTimeout(() => { this.textContent = 'Enviar Proposta'; this.style.background = ''; }, 3500);
+  // Web3Forms submission
+  document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+
+    if (data.success) {
+      btn.textContent = 'Proposta Enviada ✓';
+      btn.style.background = 'linear-gradient(135deg,#555 0%,#888 50%,#444 100%)';
+      this.reset();
+      setTimeout(() => {
+        btn.textContent = 'Enviar Proposta';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    } else {
+      btn.textContent = 'Erro — Tente novamente';
+      btn.style.background = 'linear-gradient(135deg,#5a1a1a 0%,#8a2a2a 100%)';
+      setTimeout(() => {
+        btn.textContent = 'Enviar Proposta';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }
   });
 
   // Clipes — click minicard to load in featured player
