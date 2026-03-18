@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAR SOUTH 053 — Oficial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #060606;
+    --white: #efefef;
+    --gray-dark: #111;
+    --gray-light: #777;
+    --silver: #b0b0b0;
+    --silver-bright: #e0e0e0;
+    --metal: linear-gradient(135deg, #b0b0b0 0%, #e8e8e8 35%, #989898 55%, #d0d0d0 80%, #c8c8c8 100%);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:9000; opacity:0.035; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; justify-content:space-between; align-items:center; padding:22px 52px; background:linear-gradient(to bottom, rgba(6,6,6,0.97) 0%, transparent 100%); }
+  .nav-logo img { height:36px; filter:brightness(0) invert(1); opacity:0.88; }
+  .nav-links { display:flex; gap:44px; list-style:none; }
+  .nav-links a { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gray-light); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--silver-bright); }
+  .nav-cta { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#080808; background:var(--metal); padding:10px 26px; text-decoration:none; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); font-weight:700; transition:filter 0.2s; }
+  .nav-cta:hover { filter:brightness(1.1); }
+
+  #hero { position:relative; height:100vh; min-height:700px; display:flex; flex-direction:column; justify-content:flex-end; padding:0 52px 90px; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 55% 70% at 65% 35%,rgba(140,140,140,0.07) 0%,transparent 65%),radial-gradient(ellipse 35% 50% at 15% 85%,rgba(60,60,60,0.12) 0%,transparent 55%),#060606; }
+  .hero-bg::before { content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(-48deg,transparent,transparent 70px,rgba(255,255,255,0.012) 70px,rgba(255,255,255,0.012) 71px); }
+  .scanline { position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(200,200,200,0.5) 40%,rgba(255,255,255,0.8) 50%,rgba(200,200,200,0.5) 60%,transparent); animation:scan 5s linear infinite; opacity:0; }
+  @keyframes scan { 0%{top:0;opacity:0} 3%{opacity:0.35} 97%{opacity:0.35} 100%{top:100%;opacity:0} }
+  .hero-logo-img { position:absolute; right:8%; top:50%; transform:translateY(-55%); width:min(380px,38vw); opacity:0.1; filter:brightness(0) invert(1); user-select:none; pointer-events:none; animation:logoFloat 6s ease-in-out infinite; }
+  @keyframes logoFloat { 0%,100%{transform:translateY(-55%) scale(1)} 50%{transform:translateY(-58%) scale(1.02)} }
+  .hero-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.45em; color:var(--gray-light); text-transform:uppercase; margin-bottom:18px; opacity:0; animation:riseUp 0.9s ease 0.3s forwards; }
+  .hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(72px,15vw,200px); line-height:0.82; letter-spacing:-0.01em; opacity:0; animation:riseUp 0.9s ease 0.5s forwards; }
+  .hero-title .t1 { display:block; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-title .t2 { display:block; color:transparent; -webkit-text-stroke:1px rgba(160,160,160,0.45); padding-left:4%; }
+  .hero-desc { margin-top:30px; max-width:560px; font-size:15px; line-height:1.75; color:#888; opacity:0; animation:riseUp 0.9s ease 0.7s forwards; }
+  .hero-actions { display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; opacity:0; animation:riseUp 0.9s ease 0.9s forwards; }
+  .btn-main { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:0.32em; text-transform:uppercase; font-weight:700; padding:15px 40px; background:var(--metal); color:#080808; text-decoration:none; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:filter 0.2s; display:inline-block; }
+  .btn-main:hover { filter:brightness(1.12); }
+  .btn-ghost { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:0.32em; text-transform:uppercase; font-weight:600; padding:15px 40px; background:transparent; color:var(--silver); text-decoration:none; border:1px solid rgba(160,160,160,0.28); clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:all 0.2s; display:inline-block; }
+  .btn-ghost:hover { border-color:var(--silver); color:var(--white); }
+  .hero-scroll-hint { position:absolute; bottom:36px; right:52px; display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:fadeIn 1s ease 1.4s forwards; }
+  .hero-scroll-hint span { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.35em; color:rgba(120,120,120,0.6); text-transform:uppercase; writing-mode:vertical-rl; }
+  .scroll-bar { width:1px; height:55px; background:linear-gradient(to bottom,rgba(150,150,150,0.5),transparent); animation:pulse 2.2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+  @keyframes riseUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  .marquee-wrap { overflow:hidden; border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.015); padding:14px 0; }
+  .marquee-track { display:flex; white-space:nowrap; animation:ticker 22s linear infinite; }
+  .marquee-track span { font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:0.55em; color:rgba(160,160,160,0.28); text-transform:uppercase; padding:0 56px; }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  section { padding:120px 52px; position:relative; }
+  .s-label { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.5em; color:var(--gray-light); text-transform:uppercase; display:flex; align-items:center; gap:18px; margin-bottom:56px; }
+  .s-label::before { content:''; display:block; width:36px; height:1px; background:var(--gray-light); }
+  .s-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,7.5vw,90px); line-height:0.88; letter-spacing:0.02em; }
+
+  #sobre { background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
+  .sobre-grid { display:grid; grid-template-columns:1.1fr 0.9fr; gap:90px; align-items:start; margin-top:56px; }
+  .sobre-text p { font-size:16px; line-height:1.95; color:#999; margin-bottom:18px; }
+  .sobre-text strong { color:var(--silver-bright); font-weight:500; }
+  .sobre-text blockquote { border-left:2px solid var(--silver); padding-left:22px; margin:32px 0; font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:0.06em; line-height:1.25; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .tags-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+  .tag { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.28em; text-transform:uppercase; padding:7px 18px; border:1px solid rgba(160,160,160,0.22); color:var(--silver); }
+  .sobre-right { display:flex; flex-direction:column; gap:2px; }
+  .perf-block { background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.055); padding:32px 28px; position:relative; overflow:hidden; transition:background 0.3s; }
+  .perf-block:hover { background:rgba(255,255,255,0.04); }
+  .perf-block::after { content:''; position:absolute; left:0; top:0; bottom:0; width:0; background:var(--metal); transition:width 0.4s ease; }
+  .perf-block:hover::after { width:2px; }
+  .perf-title { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.4em; color:var(--gray-light); text-transform:uppercase; margin-bottom:18px; }
+  .perf-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .perf-list li { font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:0.12em; text-transform:uppercase; color:var(--silver-bright); display:flex; align-items:center; gap:12px; }
+  .perf-list li::before { content:''; display:block; width:4px; height:4px; background:var(--silver); transform:rotate(45deg); flex-shrink:0; }
+  .contact-block { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.055); padding:28px; }
+  .contact-block .label { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.4em; color:var(--gray-light); text-transform:uppercase; margin-bottom:10px; }
+  .contact-block .phone { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:0.08em; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  #membros { background:var(--black); }
+  .membros-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:56px; }
+  .membro-card { position:relative; overflow:hidden; background:var(--gray-dark); aspect-ratio:3/4; cursor:default; }
+  .membro-card-inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:24px; background:linear-gradient(to top,rgba(6,6,6,0.95) 0%,rgba(6,6,6,0.3) 50%,transparent 100%); transition:background 0.3s; }
+  .membro-card:hover .membro-card-inner { background:linear-gradient(to top,rgba(6,6,6,0.98) 0%,rgba(6,6,6,0.5) 60%,transparent 100%); }
+  .m-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+  .m-bg-daruma { background:linear-gradient(160deg,#0d0d0d 0%,#1c1c1c 100%); }
+  .m-bg-tk { background:linear-gradient(160deg,#0a0a0a 0%,#181818 100%); }
+  .m-bg-coast { background:linear-gradient(160deg,#0e0e0e 0%,#1a1a1a 100%); }
+  .m-bg-dirua { background:linear-gradient(160deg,#0b0b0b 0%,#171717 100%); }
+  .m-bg-garcia { background:linear-gradient(160deg,#0d0d0d 0%,#1c1c1c 100%); }
+  .m-bg-hooligan { background:linear-gradient(160deg,#090909 0%,#161616 100%); }
+  .m-bg-saad { background:linear-gradient(160deg,#0c0c0c 0%,#1b1b1b 100%); }
+  .m-initial { font-family:'Bebas Neue',sans-serif; font-size:140px; color:rgba(255,255,255,0.04); line-height:1; letter-spacing:-0.03em; position:absolute; bottom:-10px; right:-10px; }
+  .membro-name { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:0.08em; line-height:1; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .membro-role { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.3em; color:var(--gray-light); text-transform:uppercase; margin-top:4px; }
+  .membro-desc { font-size:12px; line-height:1.6; color:#777; margin-top:10px; max-height:0; overflow:hidden; transition:max-height 0.4s ease,opacity 0.4s; opacity:0; }
+  .membro-card:hover .membro-desc { max-height:120px; opacity:1; }
+  .membro-card.wide { grid-column:span 2; aspect-ratio:3/2; }
+  .membro-card.wide .membro-desc { max-height:none; opacity:1; }
+
+  /* ─── CLIPES ─── */
+  #clipes { background:var(--black); border-top:1px solid rgba(255,255,255,0.04); }
+
+  .clipes-featured { margin-top:56px; margin-bottom:4px; }
+  .clipes-featured-inner {
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+    background:#000;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .clipes-featured-inner iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+  .clipes-featured-label {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 20px;
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.055);
+    border-top:none;
+    margin-bottom:32px;
+  }
+  .clipes-featured-label .clip-title {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--silver-bright);
+  }
+  .clipes-featured-label .clip-badge {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:9px;
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    color:var(--gray-light);
+    padding:5px 14px;
+    border:1px solid rgba(255,255,255,0.07);
+  }
+
+  .clipes-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+  }
+
+  .clipe-card {
+    position:relative;
+    background:var(--gray-dark);
+    overflow:hidden;
+    cursor:pointer;
+    group:true;
+  }
+
+  .clipe-thumb {
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+    background:#0a0a0a;
+  }
+  .clipe-thumb iframe {
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    border:none;
+    pointer-events:none;
+  }
+
+  /* overlay that captures click and enables iframe */
+  .clipe-overlay {
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background 0.3s;
+    z-index:2;
+  }
+  .clipe-overlay.hidden { display:none; }
+
+  .clipe-play {
+    width:52px; height:52px;
+    border:1px solid rgba(220,220,220,0.6);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform:scale(0.85);
+    transition:transform 0.3s, border-color 0.3s;
+  }
+  .clipe-card:hover .clipe-play {
+    transform:scale(1);
+    border-color:rgba(220,220,220,1);
+  }
+  .clipe-play::after {
+    content:'';
+    display:block;
+    width:0; height:0;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
+    border-left:15px solid var(--silver-bright);
+    margin-left:4px;
+  }
+
+  .clipe-info {
+    padding:16px 18px;
+    background:var(--gray-dark);
+    border-top:1px solid rgba(255,255,255,0.04);
+  }
+  .clipe-info .clipe-name {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--silver-bright);
+  }
+  .clipe-info .clipe-artist {
+    font-size:11px;
+    color:var(--gray-light);
+    letter-spacing:0.08em;
+    margin-top:3px;
+  }
+
+  .clipes-yt-link {
+    margin-top:32px;
+    display:flex;
+    justify-content:flex-end;
+  }
+
+  #musicas { background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
+  .music-layout { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; margin-top:56px; }
+  .yt-embed-wrapper { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; background:#000; border:1px solid rgba(255,255,255,0.05); }
+  .yt-embed-wrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+  .music-info h3 { font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:0.05em; line-height:1; margin-bottom:20px; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .music-info p { font-size:15px; line-height:1.85; color:#888; margin-bottom:24px; }
+  .music-genre-list { display:flex; flex-direction:column; gap:2px; margin-bottom:36px; }
+  .music-genre-item { display:flex; justify-content:space-between; align-items:center; padding:14px 20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); transition:background 0.2s; }
+  .music-genre-item:hover { background:rgba(255,255,255,0.045); }
+  .music-genre-item .g-name { font-family:'Barlow Condensed',sans-serif; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver-bright); font-weight:600; }
+  .music-genre-item .g-desc { font-size:12px; color:var(--gray-light); letter-spacing:0.05em; }
+  .stream-platforms { display:flex; gap:12px; flex-wrap:wrap; }
+  .stream-link { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:var(--silver); text-decoration:none; padding:10px 22px; border:1px solid rgba(160,160,160,0.2); transition:all 0.2s; }
+  .stream-link:hover { color:var(--white); border-color:rgba(160,160,160,0.5); background:rgba(255,255,255,0.04); }
+
+  #shows { background:var(--black); }
+  .shows-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; }
+  .shows-table { border-top:1px solid rgba(255,255,255,0.07); width:100%; }
+  .show-row { display:grid; grid-template-columns:90px 1fr 1fr auto; align-items:center; gap:36px; padding:26px 0; border-bottom:1px solid rgba(255,255,255,0.045); transition:padding-left 0.2s,background 0.2s; cursor:default; }
+  .show-row:hover { padding-left:14px; background:rgba(255,255,255,0.015); }
+  .show-date-num { font-family:'Bebas Neue',sans-serif; font-size:34px; line-height:1; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .show-date-m { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.3em; color:var(--gray-light); text-transform:uppercase; }
+  .show-venue-name { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--white); }
+  .show-venue-city { font-size:12px; color:var(--gray-light); letter-spacing:0.1em; margin-top:3px; }
+  .show-badge { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gray-light); padding:5px 14px; border:1px solid rgba(255,255,255,0.07); }
+  .show-row .btn-ghost { font-size:10px; padding:9px 22px; }
+
+  #contato { background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
+  .booking-grid { display:grid; grid-template-columns:0.9fr 1.1fr; gap:0; margin-top:56px; border:1px solid rgba(255,255,255,0.055); }
+  .booking-left { padding:56px 52px; border-right:1px solid rgba(255,255,255,0.055); background:rgba(255,255,255,0.012); display:flex; flex-direction:column; justify-content:space-between; gap:40px; }
+  .booking-left h3 { font-family:'Bebas Neue',sans-serif; font-size:52px; line-height:0.88; letter-spacing:0.02em; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .booking-left p { font-size:14px; line-height:1.85; color:#888; }
+  .booking-detail { display:flex; flex-direction:column; gap:22px; }
+  .b-item { display:flex; flex-direction:column; gap:5px; }
+  .b-item .b-label { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.45em; color:var(--gray-light); text-transform:uppercase; }
+  .b-item .b-val { font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:0.08em; color:var(--silver-bright); font-weight:600; }
+  .b-item .b-val a { color:inherit; text-decoration:none; transition:color 0.2s; }
+  .b-item .b-val a:hover { color:var(--white); }
+  .booking-right { padding:56px 52px; }
+  .form-group { margin-bottom:22px; }
+  .form-group label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.45em; text-transform:uppercase; color:var(--gray-light); margin-bottom:9px; }
+  .form-group input,.form-group textarea,.form-group select { width:100%; background:rgba(255,255,255,0.025); border:none; border-bottom:1px solid rgba(255,255,255,0.15); color:var(--white); font-family:'Barlow',sans-serif; font-size:14px; padding:12px 14px; outline:none; transition:border-color 0.2s,background 0.2s; appearance:none; -webkit-appearance:none; }
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus { border-bottom-color:var(--silver); background:rgba(255,255,255,0.04); }
+  .form-group select option { background:#111; }
+  .form-group textarea { resize:vertical; min-height:110px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .btn-submit { margin-top:28px; width:100%; padding:17px; font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:0.35em; background:var(--metal); color:#060606; border:none; clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%); cursor:pointer; transition:filter 0.2s; }
+  .btn-submit:hover { filter:brightness(1.1); }
+
+  footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.04); padding:60px 52px 36px; }
+  .footer-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:56px; }
+  .footer-brand img { height:48px; filter:brightness(0) invert(1); opacity:0.65; display:block; margin-bottom:14px; }
+  .footer-tagline { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.35em; color:rgba(120,120,120,0.6); text-transform:uppercase; }
+  .footer-links { display:flex; gap:28px; flex-wrap:wrap; }
+  .footer-links a { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gray-light); text-decoration:none; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--silver-bright); }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; padding-top:22px; border-top:1px solid rgba(255,255,255,0.04); }
+  .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.2em; color:rgba(255,255,255,0.18); text-transform:uppercase; }
+
+  @media (max-width:960px) {
+    nav { padding:18px 24px; }
+    .nav-links { display:none; }
+    section { padding:80px 24px; }
+    #hero { padding:0 24px 64px; }
+    .hero-logo-img { display:none; }
+    .sobre-grid { grid-template-columns:1fr; gap:48px; }
+    .membros-grid { grid-template-columns:repeat(2,1fr); }
+    .membro-card.wide { grid-column:span 2; aspect-ratio:3/2; }
+    .clipes-grid { grid-template-columns:1fr 1fr; }
+    .music-layout { grid-template-columns:1fr; }
+    .shows-top { flex-direction:column; align-items:flex-start; gap:24px; }
+    .show-row { grid-template-columns:70px 1fr; }
+    .show-badge,.show-row .btn-ghost { display:none; }
+    .booking-grid { grid-template-columns:1fr; }
+    .booking-left { border-right:none; border-bottom:1px solid rgba(255,255,255,0.055); }
+    .form-row { grid-template-columns:1fr; }
+    .footer-top { flex-direction:column; gap:28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo"><img src="Far_south.png" alt="Far South 053"></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#membros">Membros</a></li>
+    <li><a href="#clipes">Clipes</a></li>
+    <li><a href="#musicas">Música</a></li>
+    <li><a href="#shows">Shows</a></li>
+    <li><a href="#contato">Booking</a></li>
+  </ul>
+  <a href="#contato" class="nav-cta">Contratar</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="scanline"></div>
+  <img class="hero-logo-img" src="Far_south.png" alt="">
+  <p class="hero-eyebrow">Extremo Sul · Rio Grande do Sul · 053</p>
+  <h1 class="hero-title">
+    <span class="t1">Far South</span>
+    <span class="t2">053</span>
+  </h1>
+  <p class="hero-desc">Coletivo musical independente nascido no extremo sul do Brasil. Som pesado, identidade de fronteira. Não somos todos os mesmos, mas somos todos um só.</p>
+  <div class="hero-actions">
+    <a href="#contato" class="btn-main">Contratar para Show</a>
+    <a href="#musicas" class="btn-ghost">Assistir no YouTube</a>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Far South 053</span><span>UK Drill</span><span>Trap</span><span>Michigan</span><span>Plug</span><span>R&B</span><span>Rio Grande · RS</span><span>Coletivo Independente</span><span>Não Somos Todos Os Mesmos</span><span>Mas Somos Todos Um Só</span><span>053</span>
+    <span>Far South 053</span><span>UK Drill</span><span>Trap</span><span>Michigan</span><span>Plug</span><span>R&B</span><span>Rio Grande · RS</span><span>Coletivo Independente</span><span>Não Somos Todos Os Mesmos</span><span>Mas Somos Todos Um Só</span><span>053</span>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="s-label">Sobre o Coletivo</div>
+  <div class="sobre-grid">
+    <div class="sobre-text">
+      <h2 class="s-title" style="margin-bottom:36px;">Do Extremo<br>Sul Pro Mundo</h2>
+      <p><strong>Far South 053</strong> é um coletivo musical independente, atuante no extremo sul do Rio Grande do Sul. Construído de forma orgânica por diversos artistas — tanto músicos quanto artistas gráficos.</p>
+      <p>Nosso grupo traz referências de diversas vertentes do Hip Hop, como o <strong>Trap, Plug, Michigan, UK Drill, R&B</strong> e muito mais. Apresentamos um comportamento único, discreto e impactante.</p>
+      <p>Visando o crescimento e a valorização da cultura Hip Hop no estado, nosso objetivo é mudar o peso na balança e mostrar que <strong>é possível pra quem vem de fora do eixo</strong>.</p>
+      <blockquote>Não somos todos os mesmos,<br>mas somos todos um só!</blockquote>
+      <div class="tags-row">
+        <span class="tag">UK Drill</span><span class="tag">Trap</span><span class="tag">Michigan</span>
+        <span class="tag">Plug</span><span class="tag">R&B</span><span class="tag">Underground</span>
+        <span class="tag">Grime</span><span class="tag">Independente</span>
+      </div>
+    </div>
+    <div class="sobre-right">
+      <div class="perf-block">
+        <div class="perf-title">Performances Recentes</div>
+        <ul class="perf-list">
+          <li>HHF 2023</li>
+          <li>HHF 2024</li>
+          <li>Gold Lounge / Cassino</li>
+          <li>Quinta Cultural</li>
+          <li>Espaço Lambe</li>
+        </ul>
+      </div>
+      <div class="contact-block">
+        <div class="label">Contato Direto para Booking</div>
+        <div class="phone">+55 53 99710-2674</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="membros">
+  <div class="s-label">Quem Faz o Coletivo</div>
+  <h2 class="s-title">Membros</h2>
+  <div class="membros-grid">
+
+    <div class="membro-card">
+      <div class="m-bg m-bg-daruma"><div class="m-initial">D</div></div>
+      <div class="membro-card-inner">
+        <div class="membro-name">Daruma OG</div>
+        <div class="membro-role">MC · Diretor Executivo</div>
+        <div class="membro-desc">Nascido e criado no Rio de Janeiro, atualmente em Rio Grande/RS. Versatilidade como marca — Drill, Grime e Trap.</div>
+      </div>
+    </div>
+
+    <div class="membro-card">
+      <div class="m-bg m-bg-tk"><div class="m-initial">T</div></div>
+      <div class="membro-card-inner">
+        <div class="membro-name">TK Miles</div>
+        <div class="membro-role">MC · Rio Grande, BGV</div>
+        <div class="membro-desc">Estética versátil no Plug/Trap. Último single: "Dicotomia". Faz a onda onde a vibe surgir.</div>
+      </div>
+    </div>
+
+    <div class="membro-card">
+      <div class="m-bg m-bg-coast"><div class="m-initial">C</div></div>
+      <div class="membro-card-inner">
+        <div class="membro-name">Coast</div>
+        <div class="membro-role">MC · Rio Grande / Cassino</div>
+        <div class="membro-desc">Highest Coast. Vindo do skate e da rua, estética marcante e rimas versáteis a qualquer estilo.</div>
+      </div>
+    </div>
+
+    <div class="membro-card">
+      <div class="m-bg m-bg-dirua"><div class="m-initial">D</div></div>
+      <div class="membro-card-inner">
+        <div class="membro-name">DiRua 77</div>
+        <div class="membro-role">MC · DJ · Porto Alegre</div>
+        <div class="membro-desc">Arte urbana, skate e rap desde 2013. DJ residente da extinta festa Hype no Cassino.</div>
+      </div>
+    </div>
+
+    <div class="membro-card">
+      <div class="m-bg m-bg-garcia"><div class="m-initial">G</div></div>
+      <div class="membro-card-inner">
+        <div class="membro-name">Garciarea7</div>
+        <div class="membro-role">MC · Rio Grande</div>
+        <div class="membro-desc">Garcia Real. Fazendo música desde 2009 — Trap/Underground com vivências reais do bairro.</div>
+      </div>
+    </div>
+
+    <div class="membro-card">
+      <div class="m-bg m-bg-hooligan"><div class="m-initial">Y</div></div>
+      <div class="membro-card-inner">
+        <div class="membro-name">Yung Hooligan</div>
+        <div class="membro-role">MC · Mais do que Rapper</div>
+        <div class="membro-desc">Estilo controverso, letras de lutas internas e conflitos sociais. Energia crua e frenética.</div>
+      </div>
+    </div>
+
+    <div class="membro-card wide">
+      <div class="m-bg m-bg-saad" style="height:100%;"><div class="m-initial" style="font-size:200px;">S</div></div>
+      <div class="membro-card-inner">
+        <div class="membro-name" style="font-size:36px;">SAAD</div>
+        <div class="membro-role">Produtor Musical · Compositor · +10 anos de experiência</div>
+        <div class="membro-desc">Beats com identidade própria. Não cria apenas instrumentais — desenvolve atmosferas, conceito e direção sonora, transformando sentimento em som.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="clipes">
+  <div class="s-label">Videoclipes Oficiais</div>
+  <h2 class="s-title">Clipes</h2>
+
+  <!-- DESTAQUE -->
+  <div class="clipes-featured">
+    <div class="clipes-featured-inner">
+      <iframe id="featuredIframe"
+        src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=0&rel=0&modestbranding=1&autoplay=0"
+        title="Far South 053 — Clipe em Destaque"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="clipes-featured-label">
+      <span class="clip-title" id="featuredTitle">Playlist Oficial — Far South 053</span>
+      <span class="clip-badge">Em Destaque</span>
+    </div>
+  </div>
+
+  <!-- GRID DE CLIPES -->
+  <div class="clipes-grid">
+
+    <div class="clipe-card" data-vid="PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=0" data-title="Clipe 01 — Far South 053">
+      <div class="clipe-thumb">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=0&rel=0&modestbranding=1" tabindex="-1" title="Clipe 01"></iframe>
+      </div>
+      <div class="clipe-overlay">
+        <div class="clipe-play"></div>
+      </div>
+      <div class="clipe-info">
+        <div class="clipe-name">Clipe 01</div>
+        <div class="clipe-artist">Far South 053</div>
+      </div>
+    </div>
+
+    <div class="clipe-card" data-vid="PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=1" data-title="Clipe 02 — Far South 053">
+      <div class="clipe-thumb">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=1&rel=0&modestbranding=1" tabindex="-1" title="Clipe 02"></iframe>
+      </div>
+      <div class="clipe-overlay">
+        <div class="clipe-play"></div>
+      </div>
+      <div class="clipe-info">
+        <div class="clipe-name">Clipe 02</div>
+        <div class="clipe-artist">Far South 053</div>
+      </div>
+    </div>
+
+    <div class="clipe-card" data-vid="PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=2" data-title="Clipe 03 — Far South 053">
+      <div class="clipe-thumb">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=2&rel=0&modestbranding=1" tabindex="-1" title="Clipe 03"></iframe>
+      </div>
+      <div class="clipe-overlay">
+        <div class="clipe-play"></div>
+      </div>
+      <div class="clipe-info">
+        <div class="clipe-name">Clipe 03</div>
+        <div class="clipe-artist">Far South 053</div>
+      </div>
+    </div>
+
+    <div class="clipe-card" data-vid="PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=3" data-title="Clipe 04 — Far South 053">
+      <div class="clipe-thumb">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=3&rel=0&modestbranding=1" tabindex="-1" title="Clipe 04"></iframe>
+      </div>
+      <div class="clipe-overlay">
+        <div class="clipe-play"></div>
+      </div>
+      <div class="clipe-info">
+        <div class="clipe-name">Clipe 04</div>
+        <div class="clipe-artist">Far South 053</div>
+      </div>
+    </div>
+
+    <div class="clipe-card" data-vid="PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=4" data-title="Clipe 05 — Far South 053">
+      <div class="clipe-thumb">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=4&rel=0&modestbranding=1" tabindex="-1" title="Clipe 05"></iframe>
+      </div>
+      <div class="clipe-overlay">
+        <div class="clipe-play"></div>
+      </div>
+      <div class="clipe-info">
+        <div class="clipe-name">Clipe 05</div>
+        <div class="clipe-artist">Far South 053</div>
+      </div>
+    </div>
+
+    <div class="clipe-card" data-vid="PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=5" data-title="Clipe 06 — Far South 053">
+      <div class="clipe-thumb">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&index=5&rel=0&modestbranding=1" tabindex="-1" title="Clipe 06"></iframe>
+      </div>
+      <div class="clipe-overlay">
+        <div class="clipe-play"></div>
+      </div>
+      <div class="clipe-info">
+        <div class="clipe-name">Clipe 06</div>
+        <div class="clipe-artist">Far South 053</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="clipes-yt-link">
+    <a href="https://www.youtube.com/playlist?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP" target="_blank" class="btn-ghost">Ver Todos no YouTube →</a>
+  </div>
+</section>
+
+<section id="musicas">
+  <div class="s-label">Discografia & Streams</div>
+  <h2 class="s-title">Música</h2>
+  <div class="music-layout">
+    <div>
+      <div class="yt-embed-wrapper">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&rel=0&modestbranding=1" title="Far South 053 — Playlist Oficial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="music-info">
+      <h3>Ouça o Movimento</h3>
+      <p>Do extremo sul do Brasil pras plataformas do mundo. Um coletivo que não se limita a um único estilo — a identidade está no conjunto.</p>
+      <div class="music-genre-list">
+        <div class="music-genre-item"><span class="g-name">UK Drill</span><span class="g-desc">Batidas pesadas, letras cruas</span></div>
+        <div class="music-genre-item"><span class="g-name">Trap</span><span class="g-desc">Hi-hats frenéticos, flows duros</span></div>
+        <div class="music-genre-item"><span class="g-name">Michigan / Plug</span><span class="g-desc">Melodia e atitude</span></div>
+        <div class="music-genre-item"><span class="g-name">R&B / Grime</span><span class="g-desc">Versatilidade sem fronteiras</span></div>
+      </div>
+      <div class="stream-platforms">
+        <a href="https://www.youtube.com/playlist?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP" target="_blank" class="stream-link">YouTube</a>
+        <a href="#" class="stream-link">Spotify</a>
+        <a href="#" class="stream-link">Apple Music</a>
+        <a href="#" class="stream-link">Deezer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shows">
+  <div class="shows-top">
+    <div>
+      <div class="s-label">Agenda</div>
+      <h2 class="s-title">Shows</h2>
+    </div>
+    <a href="#contato" class="btn-main">Agendar Show</a>
+  </div>
+  <div class="shows-table">
+    <div class="show-row">
+      <div><div class="show-date-num">—</div><div class="show-date-m">A Confirmar</div></div>
+      <div><div class="show-venue-name">HHF 2025</div><div class="show-venue-city">Rio Grande / RS</div></div>
+      <div class="show-badge">Festival</div>
+      <a href="#contato" class="btn-ghost">Booking</a>
+    </div>
+    <div class="show-row">
+      <div><div class="show-date-num">—</div><div class="show-date-m">A Confirmar</div></div>
+      <div><div class="show-venue-name">A Definir</div><div class="show-venue-city">Balneário Cassino / RS</div></div>
+      <div class="show-badge">Show</div>
+      <a href="#contato" class="btn-ghost">Booking</a>
+    </div>
+    <div class="show-row">
+      <div><div class="show-date-num">—</div><div class="show-date-m">Disponível</div></div>
+      <div><div class="show-venue-name">Próxima Data</div><div class="show-venue-city">Entre em contato para agendar</div></div>
+      <div class="show-badge">Disponível</div>
+      <a href="#contato" class="btn-ghost">Booking</a>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="s-label">Booking & Contato</div>
+  <h2 class="s-title">Contrate o<br>Coletivo</h2>
+  <div class="booking-grid">
+    <div class="booking-left">
+      <div>
+        <h3>Vamos Fazer um Show</h3>
+        <p>Disponíveis para festas, festivais, eventos privados e colaborações em todo o Brasil. Entre em contato para disponibilidade, rider técnico e cachê.</p>
+      </div>
+      <div class="booking-detail">
+        <div class="b-item">
+          <span class="b-label">WhatsApp / Telefone</span>
+          <span class="b-val"><a href="https://wa.me/5553997102674" target="_blank">+55 53 99710-2674</a></span>
+        </div>
+        <div class="b-item">
+          <span class="b-label">Localização Base</span>
+          <span class="b-val">Rio Grande · RS · Extremo Sul</span>
+        </div>
+        <div class="b-item">
+          <span class="b-label">Abrangência</span>
+          <span class="b-val">Nacional · Internacional</span>
+        </div>
+        <div class="b-item">
+          <span class="b-label">Tipos de Evento</span>
+          <span class="b-val">Festivais · Baladas · Eventos Privados</span>
+        </div>
+      </div>
+      <a href="https://wa.me/5553997102674" target="_blank" class="btn-main" style="text-align:center;">Chamar no WhatsApp</a>
+    </div>
+    <div class="booking-right">
+      <div class="form-row">
+        <div class="form-group"><label>Seu Nome</label><input type="text" placeholder="Nome completo"></div>
+        <div class="form-group"><label>E-mail</label><input type="email" placeholder="email@exemplo.com"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Telefone / WhatsApp</label><input type="tel" placeholder="+55 (53) 9 9999-9999"></div>
+        <div class="form-group">
+          <label>Tipo de Evento</label>
+          <select><option value="" disabled selected>Selecione...</option><option>Festival</option><option>Balada / Show</option><option>Evento Privado</option><option>Colaboração Musical</option><option>Outro</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Data do Evento</label><input type="date"></div>
+        <div class="form-group"><label>Cidade / Estado</label><input type="text" placeholder="Ex: Pelotas — RS"></div>
+      </div>
+      <div class="form-group"><label>Mensagem</label><textarea placeholder="Conta mais sobre o evento, estrutura, público esperado, cachê disponível..."></textarea></div>
+      <button class="btn-submit" id="submitBtn">Enviar Proposta</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="Far_south.png" alt="Far South 053">
+      <div class="footer-tagline">Extremo Sul · Rio Grande do Sul · Brasil</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.youtube.com/playlist?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP" target="_blank">YouTube</a>
+      <a href="#" target="_blank">Spotify</a>
+      <a href="#" target="_blank">Instagram</a>
+      <a href="https://wa.me/5553997102674" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Far South 053 — Todos os direitos reservados</span>
+    <span class="footer-copy">UK Drill · Trap · Rap Independente · 053</span>
+  </div>
+</footer>
+
+<script>
+  const hero = document.getElementById('hero');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) hero.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+  }, { passive: true });
+
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    this.textContent = 'Proposta Enviada ✓';
+    this.style.background = 'linear-gradient(135deg,#555 0%,#888 50%,#444 100%)';
+    setTimeout(() => { this.textContent = 'Enviar Proposta'; this.style.background = ''; }, 3500);
+  });
+
+  // Clipes — click minicard to load in featured player
+  document.querySelectorAll('.clipe-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const vid = this.dataset.vid;
+      const title = this.dataset.title;
+      const featured = document.getElementById('featuredIframe');
+      const featuredTitle = document.getElementById('featuredTitle');
+      // rebuild src with autoplay
+      featured.src = `https://www.youtube.com/embed/videoseries?list=${vid}&rel=0&modestbranding=1&autoplay=1`;
+      featuredTitle.textContent = title;
+      // scroll to top of clipes section
+      document.getElementById('clipes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // hide overlay on clicked card so iframe is playable in-place too
+      this.querySelector('.clipe-overlay').classList.add('hidden');
+    });
+  });
+</script>
+</body>
+</html>
