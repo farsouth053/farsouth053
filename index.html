@@ -95,10 +95,8 @@
 
   /* ─── MEMBROS ─── */
   #membros { background:var(--black); }
+  /* 7 cards em grid de 4 colunas — linha 1: 4 cards, linha 2: 3 cards alinhados à esquerda */
   .membros-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:56px; }
-  /* Com 7 cards em 4 colunas: linha 1 = 4 cards, linha 2 = 3 cards + 1 espaço.
-     O último card (SAAD) preenche as 2 últimas colunas para fechar a linha. */
-  .membro-card:last-child { grid-column: span 2; }
   .membro-card { position:relative; overflow:hidden; background:var(--gray-dark); aspect-ratio:3/4; cursor:default; }
   .membro-card-inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:24px; background:linear-gradient(to top,rgba(6,6,6,0.95) 0%,rgba(6,6,6,0.3) 50%,transparent 100%); transition:background 0.3s; }
   .membro-card:hover .membro-card-inner { background:linear-gradient(to top,rgba(6,6,6,0.98) 0%,rgba(6,6,6,0.5) 60%,transparent 100%); }
@@ -280,7 +278,7 @@
     .hero-logo-img { display:none; }
     .sobre-grid { grid-template-columns:1fr; gap:48px; }
     .membros-grid { grid-template-columns:repeat(2,1fr); }
-    .membro-card:last-child { grid-column: span 2; aspect-ratio:3/2; }
+    .membro-card:last-child { grid-column: span 1; aspect-ratio:3/4; }
     .lanc-grid { grid-template-columns:1fr; }
     .clipes-grid { grid-template-columns:1fr 1fr; }
     .music-layout { grid-template-columns:1fr; }
@@ -536,7 +534,7 @@
        data-title = título que aparece no player grande ao clicar
        .clipe-name = nome visível no card
        .clipe-artist = artista visível no card
-     Para adicionar clipe: copie um bloco <!-- CLIPE X --> completo
+     Para adicionar clipe: copie um bloco CLIPE X completo
      Para remover clipe: apague o bloco completo
      ============================================================ -->
 <section id="clipes">
