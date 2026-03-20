@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  /* ============================================================
+     VARIÁVEIS DE COR — edite aqui para mudar o tema do site
+     ============================================================ */
   :root {
     --black: #060606;
     --white: #efefef;
@@ -21,6 +24,7 @@
   body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
   body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:9000; opacity:0.035; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
+  /* ─── NAVEGAÇÃO ─── */
   nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; justify-content:space-between; align-items:center; padding:22px 52px; background:linear-gradient(to bottom, rgba(6,6,6,0.97) 0%, transparent 100%); }
   .nav-logo img { height:36px; mix-blend-mode:screen; opacity:0.88; }
   .nav-links { display:flex; gap:44px; list-style:none; }
@@ -29,11 +33,13 @@
   .nav-cta { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#080808; background:var(--metal); padding:10px 26px; text-decoration:none; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); font-weight:700; transition:filter 0.2s; }
   .nav-cta:hover { filter:brightness(1.1); }
 
+  /* ─── HERO (seção inicial) ─── */
   #hero { position:relative; height:100vh; min-height:700px; display:flex; flex-direction:column; justify-content:flex-end; padding:0 52px 90px; overflow:hidden; }
   .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 55% 70% at 65% 35%,rgba(140,140,140,0.07) 0%,transparent 65%),radial-gradient(ellipse 35% 50% at 15% 85%,rgba(60,60,60,0.12) 0%,transparent 55%),#060606; }
   .hero-bg::before { content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(-48deg,transparent,transparent 70px,rgba(255,255,255,0.012) 70px,rgba(255,255,255,0.012) 71px); }
   .scanline { position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(200,200,200,0.5) 40%,rgba(255,255,255,0.8) 50%,rgba(200,200,200,0.5) 60%,transparent); animation:scan 5s linear infinite; opacity:0; }
   @keyframes scan { 0%{top:0;opacity:0} 3%{opacity:0.35} 97%{opacity:0.35} 100%{top:100%;opacity:0} }
+  /* Logo flutuante no hero — mix-blend-mode:screen remove o fundo branco da imagem */
   .hero-logo-img { position:absolute; right:6%; top:50%; transform:translateY(-50%); width:min(420px,40vw); opacity:0.88; mix-blend-mode:screen; user-select:none; pointer-events:none; animation:logoFloat 6s ease-in-out infinite; }
   @keyframes logoFloat { 0%,100%{transform:translateY(-55%) scale(1)} 50%{transform:translateY(-58%) scale(1.02)} }
   .hero-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.45em; color:var(--gray-light); text-transform:uppercase; margin-bottom:18px; opacity:0; animation:riseUp 0.9s ease 0.3s forwards; }
@@ -42,6 +48,7 @@
   .hero-title .t2 { display:block; color:transparent; -webkit-text-stroke:1px rgba(160,160,160,0.45); padding-left:4%; }
   .hero-desc { margin-top:30px; max-width:560px; font-size:15px; line-height:1.75; color:#888; opacity:0; animation:riseUp 0.9s ease 0.7s forwards; }
   .hero-actions { display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; opacity:0; animation:riseUp 0.9s ease 0.9s forwards; }
+  /* Botões */
   .btn-main { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:0.32em; text-transform:uppercase; font-weight:700; padding:15px 40px; background:var(--metal); color:#080808; text-decoration:none; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:filter 0.2s; display:inline-block; }
   .btn-main:hover { filter:brightness(1.12); }
   .btn-ghost { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:0.32em; text-transform:uppercase; font-weight:600; padding:15px 40px; background:transparent; color:var(--silver); text-decoration:none; border:1px solid rgba(160,160,160,0.28); clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:all 0.2s; display:inline-block; }
@@ -53,16 +60,19 @@
   @keyframes riseUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
+  /* ─── FAIXA DE TEXTO ROLANTE ─── */
   .marquee-wrap { overflow:hidden; border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.015); padding:14px 0; }
   .marquee-track { display:flex; white-space:nowrap; animation:ticker 22s linear infinite; }
   .marquee-track span { font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:0.55em; color:rgba(160,160,160,0.28); text-transform:uppercase; padding:0 56px; }
   @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
+  /* ─── BASE DE SEÇÕES ─── */
   section { padding:120px 52px; position:relative; }
   .s-label { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.5em; color:var(--gray-light); text-transform:uppercase; display:flex; align-items:center; gap:18px; margin-bottom:56px; }
   .s-label::before { content:''; display:block; width:36px; height:1px; background:var(--gray-light); }
   .s-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,7.5vw,90px); line-height:0.88; letter-spacing:0.02em; }
 
+  /* ─── SOBRE ─── */
   #sobre { background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
   .sobre-grid { display:grid; grid-template-columns:1.1fr 0.9fr; gap:90px; align-items:start; margin-top:56px; }
   .sobre-text p { font-size:16px; line-height:1.95; color:#999; margin-bottom:18px; }
@@ -83,233 +93,69 @@
   .contact-block .label { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.4em; color:var(--gray-light); text-transform:uppercase; margin-bottom:10px; }
   .contact-block .phone { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:0.08em; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
+  /* ─── MEMBROS ─── */
   #membros { background:var(--black); }
   .membros-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:56px; }
+  /* Com 7 cards em 4 colunas: linha 1 = 4 cards, linha 2 = 3 cards + 1 espaço.
+     O último card (SAAD) preenche as 2 últimas colunas para fechar a linha. */
+  .membro-card:last-child { grid-column: span 2; }
   .membro-card { position:relative; overflow:hidden; background:var(--gray-dark); aspect-ratio:3/4; cursor:default; }
   .membro-card-inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:24px; background:linear-gradient(to top,rgba(6,6,6,0.95) 0%,rgba(6,6,6,0.3) 50%,transparent 100%); transition:background 0.3s; }
   .membro-card:hover .membro-card-inner { background:linear-gradient(to top,rgba(6,6,6,0.98) 0%,rgba(6,6,6,0.5) 60%,transparent 100%); }
+  /* Foto do membro — arquivo fica na pasta fotos/ */
   .m-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:#0d0d0d; }
   .m-bg img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top center; filter:grayscale(20%) contrast(1.05); transition:transform 0.5s ease,filter 0.4s ease; }
   .membro-card:hover .m-bg img { transform:scale(1.04); filter:grayscale(0%) contrast(1.08); }
-  .m-initial { font-family:'Bebas Neue',sans-serif; font-size:140px; color:rgba(255,255,255,0.04); line-height:1; letter-spacing:-0.03em; position:absolute; bottom:-10px; right:-10px; }
   .membro-name { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:0.08em; line-height:1; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
   .membro-role { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.3em; color:var(--gray-light); text-transform:uppercase; margin-top:4px; }
+  /* Bio aparece ao passar o mouse */
   .membro-desc { font-size:12px; line-height:1.6; color:#777; margin-top:10px; max-height:0; overflow:hidden; transition:max-height 0.4s ease,opacity 0.4s; opacity:0; }
   .membro-card:hover .membro-desc { max-height:120px; opacity:1; }
+  /* Card duplo do SAAD */
   .membro-card.wide { grid-column:span 2; aspect-ratio:3/2; }
   .membro-card.wide .membro-desc { max-height:none; opacity:1; }
 
   /* ─── LANÇAMENTOS ─── */
   #lancamentos { background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
-
-  .lanc-grid {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:2px;
-    margin-top:56px;
-  }
-
-  .lanc-card {
-    background:var(--black);
-    border:1px solid rgba(255,255,255,0.055);
-    overflow:hidden;
-    transition:border-color 0.3s;
-  }
+  .lanc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:56px; }
+  .lanc-card { background:var(--black); border:1px solid rgba(255,255,255,0.055); overflow:hidden; transition:border-color 0.3s; }
   .lanc-card:hover { border-color:rgba(180,180,180,0.2); }
-
-  .lanc-video {
-    position:relative;
-    padding-bottom:56.25%;
-    height:0;
-    overflow:hidden;
-    background:#000;
-  }
-  .lanc-video iframe {
-    position:absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    border:none;
-  }
-
-  .lanc-info {
-    padding:20px 22px 24px;
-    border-top:1px solid rgba(255,255,255,0.04);
-  }
-
-  .lanc-badge {
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:9px;
-    letter-spacing:0.4em;
-    text-transform:uppercase;
-    color:var(--gray-light);
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .lanc-badge::before {
-    content:'';
-    display:block;
-    width:4px; height:4px;
-    background:var(--silver);
-    transform:rotate(45deg);
-    flex-shrink:0;
-  }
-
-  .lanc-title {
-    font-family:'Bebas Neue',sans-serif;
-    font-size:24px;
-    letter-spacing:0.08em;
-    line-height:1;
-    background:var(--metal);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    background-clip:text;
-    margin-bottom:6px;
-  }
-
-  .lanc-artist {
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:12px;
-    letter-spacing:0.15em;
-    color:var(--gray-light);
-    text-transform:uppercase;
-  }
+  .lanc-video { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; background:#000; }
+  .lanc-video iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+  .lanc-info { padding:20px 22px 24px; border-top:1px solid rgba(255,255,255,0.04); }
+  .lanc-badge { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gray-light); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .lanc-badge::before { content:''; display:block; width:4px; height:4px; background:var(--silver); transform:rotate(45deg); flex-shrink:0; }
+  /* Título do lançamento — edite o texto no HTML abaixo */
+  .lanc-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:0.08em; line-height:1; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:6px; }
+  .lanc-artist { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:0.15em; color:var(--gray-light); text-transform:uppercase; }
 
   /* ─── CLIPES ─── */
   #clipes { background:var(--black); border-top:1px solid rgba(255,255,255,0.04); }
-
+  /* Player em destaque */
   .clipes-featured { margin-top:56px; margin-bottom:4px; }
-  .clipes-featured-inner {
-    position:relative;
-    padding-bottom:56.25%;
-    height:0;
-    overflow:hidden;
-    background:#000;
-    border:1px solid rgba(255,255,255,0.06);
-  }
+  .clipes-featured-inner { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; background:#000; border:1px solid rgba(255,255,255,0.06); }
   .clipes-featured-inner iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
-
-  .clipes-featured-label {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:16px 20px;
-    background:rgba(255,255,255,0.02);
-    border:1px solid rgba(255,255,255,0.055);
-    border-top:none;
-    margin-bottom:32px;
-  }
-  .clipes-featured-label .clip-title {
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:15px;
-    font-weight:700;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--silver-bright);
-  }
-  .clipes-featured-label .clip-badge {
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:9px;
-    letter-spacing:0.4em;
-    text-transform:uppercase;
-    color:var(--gray-light);
-    padding:5px 14px;
-    border:1px solid rgba(255,255,255,0.07);
-  }
-
-  .clipes-grid {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:2px;
-  }
-
-  .clipe-card {
-    position:relative;
-    background:var(--gray-dark);
-    overflow:hidden;
-    cursor:pointer;
-    group:true;
-  }
-
-  .clipe-thumb {
-    position:relative;
-    padding-bottom:56.25%;
-    height:0;
-    overflow:hidden;
-    background:#0a0a0a;
-  }
-  .clipe-thumb iframe {
-    position:absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    border:none;
-    pointer-events:none;
-  }
-
-  /* overlay that captures click and enables iframe */
-  .clipe-overlay {
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.45);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:background 0.3s;
-    z-index:2;
-  }
+  .clipes-featured-label { display:flex; justify-content:space-between; align-items:center; padding:16px 20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.055); border-top:none; margin-bottom:32px; }
+  .clipes-featured-label .clip-title { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--silver-bright); }
+  .clipes-featured-label .clip-badge { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gray-light); padding:5px 14px; border:1px solid rgba(255,255,255,0.07); }
+  /* Grid de miniaturas */
+  .clipes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+  .clipe-card { position:relative; background:var(--gray-dark); overflow:hidden; cursor:pointer; }
+  .clipe-thumb { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; background:#0a0a0a; }
+  .clipe-thumb iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; pointer-events:none; }
+  /* Overlay com botão play — some ao clicar */
+  .clipe-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; transition:background 0.3s; z-index:2; }
   .clipe-overlay.hidden { display:none; }
+  .clipe-play { width:52px; height:52px; border:1px solid rgba(220,220,220,0.6); border-radius:50%; display:flex; align-items:center; justify-content:center; transform:scale(0.85); transition:transform 0.3s, border-color 0.3s; }
+  .clipe-card:hover .clipe-play { transform:scale(1); border-color:rgba(220,220,220,1); }
+  .clipe-play::after { content:''; display:block; width:0; height:0; border-top:9px solid transparent; border-bottom:9px solid transparent; border-left:15px solid var(--silver-bright); margin-left:4px; }
+  /* Info embaixo do clipe */
+  .clipe-info { padding:16px 18px; background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
+  .clipe-info .clipe-name { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--silver-bright); }
+  .clipe-info .clipe-artist { font-size:11px; color:var(--gray-light); letter-spacing:0.08em; margin-top:3px; }
+  .clipes-yt-link { margin-top:32px; display:flex; justify-content:flex-end; }
 
-  .clipe-play {
-    width:52px; height:52px;
-    border:1px solid rgba(220,220,220,0.6);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transform:scale(0.85);
-    transition:transform 0.3s, border-color 0.3s;
-  }
-  .clipe-card:hover .clipe-play {
-    transform:scale(1);
-    border-color:rgba(220,220,220,1);
-  }
-  .clipe-play::after {
-    content:'';
-    display:block;
-    width:0; height:0;
-    border-top:9px solid transparent;
-    border-bottom:9px solid transparent;
-    border-left:15px solid var(--silver-bright);
-    margin-left:4px;
-  }
-
-  .clipe-info {
-    padding:16px 18px;
-    background:var(--gray-dark);
-    border-top:1px solid rgba(255,255,255,0.04);
-  }
-  .clipe-info .clipe-name {
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:14px;
-    font-weight:700;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--silver-bright);
-  }
-  .clipe-info .clipe-artist {
-    font-size:11px;
-    color:var(--gray-light);
-    letter-spacing:0.08em;
-    margin-top:3px;
-  }
-
-  .clipes-yt-link {
-    margin-top:32px;
-    display:flex;
-    justify-content:flex-end;
-  }
-
+  /* ─── MÚSICA / STREAMING ─── */
   #musicas { background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
   .music-layout { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; margin-top:56px; }
   .yt-embed-wrapper { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; background:#000; border:1px solid rgba(255,255,255,0.05); }
@@ -321,13 +167,16 @@
   .music-genre-item:hover { background:rgba(255,255,255,0.045); }
   .music-genre-item .g-name { font-family:'Barlow Condensed',sans-serif; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver-bright); font-weight:600; }
   .music-genre-item .g-desc { font-size:12px; color:var(--gray-light); letter-spacing:0.05em; }
+  /* Links de streaming — adicione o href real de cada plataforma */
   .stream-platforms { display:flex; gap:12px; flex-wrap:wrap; }
   .stream-link { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:var(--silver); text-decoration:none; padding:10px 22px; border:1px solid rgba(160,160,160,0.2); transition:all 0.2s; }
   .stream-link:hover { color:var(--white); border-color:rgba(160,160,160,0.5); background:rgba(255,255,255,0.04); }
 
+  /* ─── SHOWS / AGENDA ─── */
   #shows { background:var(--black); }
   .shows-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; }
   .shows-table { border-top:1px solid rgba(255,255,255,0.07); width:100%; }
+  /* Cada linha é um show — copie um .show-row para adicionar mais */
   .show-row { display:grid; grid-template-columns:90px 1fr 1fr auto; align-items:center; gap:36px; padding:26px 0; border-bottom:1px solid rgba(255,255,255,0.045); transition:padding-left 0.2s,background 0.2s; cursor:default; }
   .show-row:hover { padding-left:14px; background:rgba(255,255,255,0.015); }
   .show-date-num { font-family:'Bebas Neue',sans-serif; font-size:34px; line-height:1; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
@@ -337,6 +186,7 @@
   .show-badge { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gray-light); padding:5px 14px; border:1px solid rgba(255,255,255,0.07); }
   .show-row .btn-ghost { font-size:10px; padding:9px 22px; }
 
+  /* ─── BOOKING / CONTATO ─── */
   #contato { background:var(--gray-dark); border-top:1px solid rgba(255,255,255,0.04); }
   .booking-grid { display:grid; grid-template-columns:0.9fr 1.1fr; gap:0; margin-top:56px; border:1px solid rgba(255,255,255,0.055); }
   .booking-left { padding:56px 52px; border-right:1px solid rgba(255,255,255,0.055); background:rgba(255,255,255,0.012); display:flex; flex-direction:column; justify-content:space-between; gap:40px; }
@@ -349,6 +199,7 @@
   .b-item .b-val a { color:inherit; text-decoration:none; transition:color 0.2s; }
   .b-item .b-val a:hover { color:var(--white); }
   .booking-right { padding:56px 52px; }
+  /* Formulário de contato — conectado ao Web3Forms */
   .form-group { margin-bottom:22px; }
   .form-group label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.45em; text-transform:uppercase; color:var(--gray-light); margin-bottom:9px; }
   .form-group input,.form-group textarea,.form-group select { width:100%; background:rgba(255,255,255,0.025); border:none; border-bottom:1px solid rgba(255,255,255,0.15); color:var(--white); font-family:'Barlow',sans-serif; font-size:14px; padding:12px 14px; outline:none; transition:border-color 0.2s,background 0.2s; appearance:none; -webkit-appearance:none; }
@@ -359,17 +210,69 @@
   .btn-submit { margin-top:28px; width:100%; padding:17px; font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:0.35em; background:var(--metal); color:#060606; border:none; clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%); cursor:pointer; transition:filter 0.2s; }
   .btn-submit:hover { filter:brightness(1.1); }
 
+  /* ─── FOOTER ─── */
   footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.04); padding:60px 52px 36px; }
   .footer-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:56px; }
   .footer-brand img { height:48px; mix-blend-mode:screen; opacity:0.75; display:block; margin-bottom:14px; }
   .footer-tagline { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.35em; color:rgba(120,120,120,0.6); text-transform:uppercase; }
+  /* Links do footer — adicione ou remova redes sociais aqui */
   .footer-links { display:flex; gap:28px; flex-wrap:wrap; }
   .footer-links a { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gray-light); text-decoration:none; transition:color 0.2s; }
   .footer-links a:hover { color:var(--silver-bright); }
   .footer-bottom { display:flex; justify-content:space-between; align-items:center; padding-top:22px; border-top:1px solid rgba(255,255,255,0.04); }
   .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.2em; color:rgba(255,255,255,0.18); text-transform:uppercase; }
 
+  /* ─── BOTÃO FLUTUANTE LINKTREE ─── */
+  .linktree-float {
+    position:fixed;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:400;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .linktree-float a {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    transform:rotate(180deg);
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:10px;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gray-light);
+    text-decoration:none;
+    padding:20px 10px;
+    background:rgba(10,10,10,0.85);
+    border-left:1px solid rgba(255,255,255,0.07);
+    border-top:1px solid rgba(255,255,255,0.07);
+    border-bottom:1px solid rgba(255,255,255,0.07);
+    backdrop-filter:blur(8px);
+    transition:color 0.25s, background 0.25s, border-color 0.25s;
+    clip-path:polygon(0% 8px, 8px 0%, 100% 0%, 100% 100%, 8px 100%, 0% calc(100% - 8px));
+  }
+  .linktree-float a:hover {
+    color:var(--silver-bright);
+    background:rgba(20,20,20,0.95);
+    border-color:rgba(180,180,180,0.25);
+  }
+  .linktree-float a::before {
+    content:'';
+    display:block;
+    width:1px;
+    height:28px;
+    background:linear-gradient(to bottom, transparent, var(--gray-light));
+    margin-bottom:4px;
+    flex-shrink:0;
+  }
+
+  /* ─── RESPONSIVO (celular/tablet) ─── */
   @media (max-width:960px) {
+    .linktree-float { display:none; }
     nav { padding:18px 24px; }
     .nav-links { display:none; }
     section { padding:80px 24px; }
@@ -377,7 +280,7 @@
     .hero-logo-img { display:none; }
     .sobre-grid { grid-template-columns:1fr; gap:48px; }
     .membros-grid { grid-template-columns:repeat(2,1fr); }
-    .membro-card.wide { grid-column:span 2; aspect-ratio:3/2; }
+    .membro-card:last-child { grid-column: span 2; aspect-ratio:3/2; }
     .lanc-grid { grid-template-columns:1fr; }
     .clipes-grid { grid-template-columns:1fr 1fr; }
     .music-layout { grid-template-columns:1fr; }
@@ -393,6 +296,9 @@
 </head>
 <body>
 
+<!-- ============================================================
+     NAVEGAÇÃO — edite os links do menu aqui
+     ============================================================ -->
 <nav>
   <a href="#" class="nav-logo"><img src="Far_south.png" alt="Far South 053"></a>
   <ul class="nav-links">
@@ -407,6 +313,11 @@
   <a href="#contato" class="nav-cta">Contratar</a>
 </nav>
 
+<!-- Botão flutuante Linktree — lateral direita da tela -->
+<div class="linktree-float">
+  <a href="https://linktr.ee/farsouth053" target="_blank">Linktree</a>
+</div>
+
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="scanline"></div>
@@ -419,7 +330,7 @@
   <p class="hero-desc">Coletivo musical independente nascido no extremo sul do Brasil. Som pesado, identidade de fronteira. Não somos todos os mesmos, mas somos todos um só.</p>
   <div class="hero-actions">
     <a href="#contato" class="btn-main">Contratar para Show</a>
-    <a href="#musicas" class="btn-ghost">Assistir no YouTube</a>
+    <a href="#clipes" class="btn-ghost">Assistir no YouTube</a>
   </div>
   <div class="hero-scroll-hint">
     <div class="scroll-bar"></div>
@@ -427,6 +338,7 @@
   </div>
 </section>
 
+<!-- Faixa de texto rolante -->
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span>Far South 053</span><span>UK Drill</span><span>Trap</span><span>Michigan</span><span>Plug</span><span>R&B</span><span>Rio Grande · RS</span><span>Coletivo Independente</span><span>Não Somos Todos Os Mesmos</span><span>Mas Somos Todos Um Só</span><span>053</span>
@@ -434,6 +346,10 @@
   </div>
 </div>
 
+<!-- ============================================================
+     SOBRE — bio do coletivo
+     Edite: parágrafos, performances, telefone
+     ============================================================ -->
 <section id="sobre">
   <div class="s-label">Sobre o Coletivo</div>
   <div class="sobre-grid">
@@ -450,6 +366,7 @@
       </div>
     </div>
     <div class="sobre-right">
+      <!-- Lista de shows passados — adicione ou remova <li> -->
       <div class="perf-block">
         <div class="perf-title">Performances Recentes</div>
         <ul class="perf-list">
@@ -460,6 +377,7 @@
           <li>Espaço Lambe</li>
         </ul>
       </div>
+      <!-- Telefone de contato direto -->
       <div class="contact-block">
         <div class="label">Contato Direto para Booking</div>
         <div class="phone">+55 53 99710-2674</div>
@@ -468,11 +386,20 @@
   </div>
 </section>
 
+<!-- ============================================================
+     MEMBROS — cards dos artistas
+     Para editar um membro: localize pelo nome e edite:
+       .membro-name = nome artístico
+       .membro-role = função / estilo
+       .membro-desc = bio (aparece ao passar o mouse)
+       src da img = caminho da foto (pasta fotos/)
+     ============================================================ -->
 <section id="membros">
   <div class="s-label">Quem Faz o Coletivo</div>
   <h2 class="s-title">Membros</h2>
   <div class="membros-grid">
 
+    <!-- DARUMA OG -->
     <div class="membro-card">
       <div class="m-bg"><img src="fotos/daruma.jpeg" alt="Daruma OG"></div>
       <div class="membro-card-inner">
@@ -482,6 +409,7 @@
       </div>
     </div>
 
+    <!-- TK MILES -->
     <div class="membro-card">
       <div class="m-bg"><img src="fotos/tkmiles.png" alt="TK Miles"></div>
       <div class="membro-card-inner">
@@ -491,6 +419,7 @@
       </div>
     </div>
 
+    <!-- COAST -->
     <div class="membro-card">
       <div class="m-bg"><img src="fotos/coast.jpg" alt="Coast"></div>
       <div class="membro-card-inner">
@@ -500,6 +429,7 @@
       </div>
     </div>
 
+    <!-- DIRUA 77 -->
     <div class="membro-card">
       <div class="m-bg"><img src="fotos/dirua77.jpg" alt="DiRua 77"></div>
       <div class="membro-card-inner">
@@ -509,6 +439,7 @@
       </div>
     </div>
 
+    <!-- GARCIAREA7 -->
     <div class="membro-card">
       <div class="m-bg"><img src="fotos/garcia.png" alt="Garciarea7"></div>
       <div class="membro-card-inner">
@@ -518,6 +449,7 @@
       </div>
     </div>
 
+    <!-- YUNG HOOLIGAN -->
     <div class="membro-card">
       <div class="m-bg"><img src="fotos/hooligan.jpg" alt="Yung Hooligan"></div>
       <div class="membro-card-inner">
@@ -527,190 +459,176 @@
       </div>
     </div>
 
-    <div class="membro-card wide">
-      <div class="m-bg"><img src="fotos/saad.jpg" alt="SAAD" style="object-position:center center;"></div>
+    <!-- SAAD -->
+    <div class="membro-card">
+      <div class="m-bg"><img src="fotos/saad.jpg" alt="SAAD"></div>
       <div class="membro-card-inner">
-        <div class="membro-name" style="font-size:36px;">SAAD</div>
-        <div class="membro-role">Produtor Musical · Compositor · </div>
-        <div class="membro-desc">Beats com identidade própria. Não cria apenas instrumentais — desenvolve atmosferas, conceito e direção sonora, transformando sentimento em som.</div>
+        <div class="membro-name">SAAD</div>
+        <div class="membro-role">Produtor Musical · Compositor</div>
+        <div class="membro-desc">+10 anos de experiência. Não cria apenas instrumentais — desenvolve atmosferas, conceito e direção sonora, transformando sentimento em som.</div>
       </div>
     </div>
 
   </div>
 </section>
 
+<!-- ============================================================
+     LANÇAMENTOS — últimos vídeos/singles
+     Para trocar um vídeo: substitua o ID do YouTube no src do iframe
+       Ex: youtube.com/embed/ID_DO_VIDEO
+     Para trocar o título: edite o texto em .lanc-title
+     Para trocar o badge: edite o texto em .lanc-badge (ex: Single, EP, Feat)
+     Para trocar o artista: edite .lanc-artist
+     ============================================================ -->
 <section id="lancamentos">
   <div class="s-label">Novidades</div>
   <h2 class="s-title">Lançamentos</h2>
 
   <div class="lanc-grid">
 
-    <!-- ============================================================
-         LANÇAMENTO 1
-         Para trocar o vídeo: substitua "jN7v7755Xzs" pelo ID do novo vídeo
-         Para trocar o título: edite o texto dentro de <div class="lanc-title">
-         Para trocar o badge (ex: Single, EP, Feat): edite <div class="lanc-badge">
-         ============================================================ -->
+    <!-- LANÇAMENTO 1 — ID: jN7v7755Xzs -->
     <div class="lanc-card">
       <div class="lanc-video">
-        <iframe
-          src="https://www.youtube.com/embed/jN7v7755Xzs?rel=0&modestbranding=1"
-          title="Dicotomia - Tk-miles prod. DU.MK (Official Music Video)"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="lanc-info">
-        <div class="lanc-badge">Novo · 2025</div>
-        <div class="lanc-title">Título do Lançamento 1</div> <!-- Troque pelo nome da música -->
-        <div class="lanc-artist">Far South 053</div>
-      </div>
-    </div>
-
-    <!-- ============================================================
-         LANÇAMENTO 2
-         Para trocar o vídeo: substitua "PJaYeHgqnGw" pelo ID do novo vídeo
-         ============================================================ -->
-    <div class="lanc-card">
-      <div class="lanc-video">
-        <iframe
-          src="https://www.youtube.com/embed/PJaYeHgqnGw?rel=0&modestbranding=1"
-          title="COAST “Jogadão” (Visualizer)"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+        <iframe src="https://www.youtube.com/embed/jN7v7755Xzs?rel=0&modestbranding=1"
+          title="Dicotomia - Tk Miles" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="lanc-info">
         <div class="lanc-badge">Single · 2025</div>
-        <div class="lanc-title">Título do Lançamento 2</div> <!-- Troque pelo nome da música -->
-        <div class="lanc-artist">Far South 053</div>
+        <div class="lanc-title">Dicotomia</div>
+        <div class="lanc-artist">TK Miles</div>
       </div>
     </div>
 
-    <!-- ============================================================
-         LANÇAMENTO 3
-         Para trocar o vídeo: substitua "xma4xVJ_wRo" pelo ID do novo vídeo
-         ============================================================ -->
+    <!-- LANÇAMENTO 2 — ID: PJaYeHgqnGw -->
     <div class="lanc-card">
       <div class="lanc-video">
-        <iframe
-          src="https://www.youtube.com/embed/xma4xVJ_wRo?rel=0&modestbranding=1"
-          title="KAKASHI - Daruma OG feat. Beats By GorJah (Official Video) #PKB"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+        <iframe src="https://www.youtube.com/embed/PJaYeHgqnGw?rel=0&modestbranding=1"
+          title="Jogadão - Coast" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="lanc-info">
         <div class="lanc-badge">Single · 2025</div>
-        <div class="lanc-title">Título do Lançamento 3</div> <!-- Troque pelo nome da música -->
-        <div class="lanc-artist">Far South 053</div>
+        <div class="lanc-title">Jogadão</div>
+        <div class="lanc-artist">Coast</div>
+      </div>
+    </div>
+
+    <!-- LANÇAMENTO 3 — ID: xma4xVJ_wRo -->
+    <div class="lanc-card">
+      <div class="lanc-video">
+        <iframe src="https://www.youtube.com/embed/xma4xVJ_wRo?rel=0&modestbranding=1"
+          title="Kakashi - Daruma OG" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lanc-info">
+        <div class="lanc-badge">Single · 2025</div>
+        <div class="lanc-title">Kakashi</div>
+        <div class="lanc-artist">Daruma OG</div>
       </div>
     </div>
 
   </div>
 </section>
 
+<!-- ============================================================
+     CLIPES — videoclipes oficiais
+     Player em destaque atualiza ao clicar nos cards
+     Para cada card:
+       data-vid = ID do vídeo (parte após youtu.be/ ou watch?v=)
+       data-title = título que aparece no player grande ao clicar
+       .clipe-name = nome visível no card
+       .clipe-artist = artista visível no card
+     Para adicionar clipe: copie um bloco <!-- CLIPE X --> completo
+     Para remover clipe: apague o bloco completo
+     ============================================================ -->
 <section id="clipes">
   <div class="s-label">Videoclipes Oficiais</div>
   <h2 class="s-title">Clipes</h2>
 
-  <!-- Player em destaque — atualiza automaticamente ao clicar nos cards abaixo -->
+  <!-- Player em destaque — atualiza ao clicar nos cards abaixo -->
   <div class="clipes-featured">
     <div class="clipes-featured-inner">
       <iframe id="featuredIframe"
         src="https://www.youtube.com/embed/5arosS0wJNY?rel=0&modestbranding=1"
         title="Far South 053 — Clipe em Destaque"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
       </iframe>
     </div>
     <div class="clipes-featured-label">
-      <span class="clip-title" id="featuredTitle">Clipe 01 — Far South 053</span>
+      <span class="clip-title" id="featuredTitle">No Diabo Nois Pisa — Coast</span>
       <span class="clip-badge">Em Destaque</span>
     </div>
   </div>
 
-  <!-- ============================================================
-       GRID DE CLIPES
-       Para cada card:
-         data-vid = ID do vídeo do YouTube (aparece no player em destaque ao clicar)
-         data-title = título que aparece no label do player em destaque
-         src do iframe = mesmo ID do vídeo: youtube.com/embed/ID_AQUI
-         .clipe-name = nome que aparece no card
-       Para adicionar um novo clipe: copie um bloco inteiro <div class="clipe-card">
-       Para remover um clipe: apague o bloco inteiro <div class="clipe-card">
-       ============================================================ -->
   <div class="clipes-grid">
 
-    <!-- CLIPE 1 -->
-    <div class="clipe-card" data-vid="5arosS0wJNY" data-title="COAST - No Diabo Nois Pisa (Official Music Video)">
+    <!-- CLIPE 1 — ID: 5arosS0wJNY -->
+    <div class="clipe-card" data-vid="5arosS0wJNY" data-title="No Diabo Nois Pisa — Coast">
       <div class="clipe-thumb">
-        <iframe src="https://www.youtube.com/embed/VRt7sAkKBl4?rel=0&modestbranding=1" tabindex="-1" title="Clipe 01"></iframe>
+        <iframe src="https://www.youtube.com/embed/5arosS0wJNY?rel=0&modestbranding=1" tabindex="-1" title="No Diabo Nois Pisa"></iframe>
       </div>
       <div class="clipe-overlay"><div class="clipe-play"></div></div>
       <div class="clipe-info">
-        <div class="clipe-name">Clipe 01</div> <!-- Troque pelo nome da música -->
-        <div class="clipe-artist">Far South 053</div>
+        <div class="clipe-name">No Diabo Nois Pisa</div>
+        <div class="clipe-artist">Coast</div>
       </div>
     </div>
 
-    <!-- CLIPE 2 -->
-    <div class="clipe-card" data-vid="VRt7sAkKBl4" data-title="CAESER - Daruma OG ft. Yung Hooligan prod. PHem (Official Video)">
+    <!-- CLIPE 2 — ID: VRt7sAkKBl4 -->
+    <div class="clipe-card" data-vid="VRt7sAkKBl4" data-title="Caeser — Daruma OG ft. Yung Hooligan">
       <div class="clipe-thumb">
-        <iframe src="https://www.youtube.com/embed/5arosS0wJNY?rel=0&modestbranding=1" tabindex="-1" title="Clipe 02"></iframe>
+        <iframe src="https://www.youtube.com/embed/VRt7sAkKBl4?rel=0&modestbranding=1" tabindex="-1" title="Caeser"></iframe>
       </div>
       <div class="clipe-overlay"><div class="clipe-play"></div></div>
       <div class="clipe-info">
-        <div class="clipe-name">Clipe 02</div> <!-- Troque pelo nome da música -->
-        <div class="clipe-artist">Far South 053</div>
+        <div class="clipe-name">Caeser</div>
+        <div class="clipe-artist">Daruma OG ft. Yung Hooligan</div>
       </div>
     </div>
 
-    <!-- CLIPE 3 -->
-    <div class="clipe-card" data-vid="C6LMxlRsmaw" data-title="Lago Dos Cisnes - Tk-miles prod. Trippy (Official Video)">
+    <!-- CLIPE 3 — ID: C6LMxlRsmaw -->
+    <div class="clipe-card" data-vid="C6LMxlRsmaw" data-title="Lago Dos Cisnes — TK Miles">
       <div class="clipe-thumb">
-        <iframe src="https://www.youtube.com/embed/C6LMxlRsmaw?rel=0&modestbranding=1" tabindex="-1" title="Clipe 03"></iframe>
+        <iframe src="https://www.youtube.com/embed/C6LMxlRsmaw?rel=0&modestbranding=1" tabindex="-1" title="Lago Dos Cisnes"></iframe>
       </div>
       <div class="clipe-overlay"><div class="clipe-play"></div></div>
       <div class="clipe-info">
-        <div class="clipe-name">Clipe 03</div> <!-- Troque pelo nome da música -->
-        <div class="clipe-artist">Far South 053</div>
+        <div class="clipe-name">Lago Dos Cisnes</div>
+        <div class="clipe-artist">TK Miles</div>
       </div>
     </div>
 
-    <!-- CLIPE 4 -->
-    <div class="clipe-card" data-vid="Hrq3c2a42uk" data-title="QQTEM - Daruma OG prod. PHem, Beats by GorJah, queronemsabe (Official Video)">
+    <!-- CLIPE 4 — ID: Hrq3c2a42uk -->
+    <div class="clipe-card" data-vid="Hrq3c2a42uk" data-title="QQTEM — Daruma OG">
       <div class="clipe-thumb">
-        <iframe src="https://www.youtube.com/embed/Hrq3c2a42uk?rel=0&modestbranding=1" tabindex="-1" title="Clipe 04"></iframe>
+        <iframe src="https://www.youtube.com/embed/Hrq3c2a42uk?rel=0&modestbranding=1" tabindex="-1" title="QQTEM"></iframe>
       </div>
       <div class="clipe-overlay"><div class="clipe-play"></div></div>
       <div class="clipe-info">
-        <div class="clipe-name">Clipe 04</div> <!-- Troque pelo nome da música -->
-        <div class="clipe-artist">Far South 053</div>
+        <div class="clipe-name">QQTEM</div>
+        <div class="clipe-artist">Daruma OG</div>
       </div>
     </div>
 
-    <!-- CLIPE 5 -->
-    <div class="clipe-card" data-vid="ZIMJSm_GGzw" data-title="COAST - Amuleto 🪬(Official Music Video)">
+    <!-- CLIPE 5 — ID: ZIMJSm_GGzw -->
+    <div class="clipe-card" data-vid="ZIMJSm_GGzw" data-title="Amuleto — Coast">
       <div class="clipe-thumb">
-        <iframe src="https://www.youtube.com/embed/ZIMJSm_GGzw?rel=0&modestbranding=1" tabindex="-1" title="Clipe 05"></iframe>
+        <iframe src="https://www.youtube.com/embed/ZIMJSm_GGzw?rel=0&modestbranding=1" tabindex="-1" title="Amuleto"></iframe>
       </div>
       <div class="clipe-overlay"><div class="clipe-play"></div></div>
       <div class="clipe-info">
-        <div class="clipe-name">Clipe 05</div> <!-- Troque pelo nome da música -->
-        <div class="clipe-artist">Far South 053</div>
+        <div class="clipe-name">Amuleto</div>
+        <div class="clipe-artist">Coast</div>
       </div>
     </div>
 
-    <!-- CLIPE 6 -->
-    <div class="clipe-card" data-vid="t7SJRNpuwlk" data-title="FICHA - Daruma OG ft. Yung Hooligan prod. Coleti, Beats by GorJah (Official Video)">
+    <!-- CLIPE 6 — ID: t7SJRNpuwlk -->
+    <div class="clipe-card" data-vid="t7SJRNpuwlk" data-title="Ficha — Daruma OG ft. Yung Hooligan">
       <div class="clipe-thumb">
-        <iframe src="https://www.youtube.com/embed/t7SJRNpuwlk?rel=0&modestbranding=1" tabindex="-1" title="Clipe 06"></iframe>
+        <iframe src="https://www.youtube.com/embed/t7SJRNpuwlk?rel=0&modestbranding=1" tabindex="-1" title="Ficha"></iframe>
       </div>
       <div class="clipe-overlay"><div class="clipe-play"></div></div>
       <div class="clipe-info">
-        <div class="clipe-name">Clipe 06</div> <!-- Troque pelo nome da música -->
-        <div class="clipe-artist">Far South 053</div>
+        <div class="clipe-name">Ficha</div>
+        <div class="clipe-artist">Daruma OG ft. Yung Hooligan</div>
       </div>
     </div>
 
@@ -721,13 +639,19 @@
   </div>
 </section>
 
+<!-- ============================================================
+     MÚSICA / STREAMING
+     Edite os links href de cada .stream-link com a URL real da plataforma
+     ============================================================ -->
 <section id="musicas">
   <div class="s-label">Discografia & Streams</div>
   <h2 class="s-title">Música</h2>
   <div class="music-layout">
     <div>
       <div class="yt-embed-wrapper">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&rel=0&modestbranding=1" title="Far South 053 — Playlist Oficial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP&rel=0&modestbranding=1"
+          title="Far South 053 — Playlist Oficial"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
     <div class="music-info">
@@ -739,6 +663,7 @@
         <div class="music-genre-item"><span class="g-name">Michigan / Plug</span><span class="g-desc">Melodia e atitude</span></div>
         <div class="music-genre-item"><span class="g-name">R&B / Grime</span><span class="g-desc">Versatilidade sem fronteiras</span></div>
       </div>
+      <!-- Troque os href="#" pelo link real de cada plataforma -->
       <div class="stream-platforms">
         <a href="https://www.youtube.com/playlist?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP" target="_blank" class="stream-link">YouTube</a>
         <a href="#" class="stream-link">Spotify</a>
@@ -749,6 +674,12 @@
   </div>
 </section>
 
+<!-- ============================================================
+     SHOWS / AGENDA
+     Para adicionar um show: copie um bloco .show-row completo
+     Para remover: apague o bloco .show-row
+     Edite: data, nome do local, cidade, tipo (Festival/Show/etc)
+     ============================================================ -->
 <section id="shows">
   <div class="shows-top">
     <div>
@@ -758,27 +689,39 @@
     <a href="#contato" class="btn-main">Agendar Show</a>
   </div>
   <div class="shows-table">
+
+    <!-- SHOW 1 — edite data, local e cidade -->
     <div class="show-row">
       <div><div class="show-date-num">—</div><div class="show-date-m">A Confirmar</div></div>
       <div><div class="show-venue-name">HHF 2025</div><div class="show-venue-city">Rio Grande / RS</div></div>
       <div class="show-badge">Festival</div>
       <a href="#contato" class="btn-ghost">Booking</a>
     </div>
+
+    <!-- SHOW 2 -->
     <div class="show-row">
       <div><div class="show-date-num">—</div><div class="show-date-m">A Confirmar</div></div>
       <div><div class="show-venue-name">A Definir</div><div class="show-venue-city">Balneário Cassino / RS</div></div>
       <div class="show-badge">Show</div>
       <a href="#contato" class="btn-ghost">Booking</a>
     </div>
+
+    <!-- SHOW 3 -->
     <div class="show-row">
       <div><div class="show-date-num">—</div><div class="show-date-m">Disponível</div></div>
       <div><div class="show-venue-name">Próxima Data</div><div class="show-venue-city">Entre em contato para agendar</div></div>
       <div class="show-badge">Disponível</div>
       <a href="#contato" class="btn-ghost">Booking</a>
     </div>
+
   </div>
 </section>
 
+<!-- ============================================================
+     BOOKING / CONTATO
+     Formulário conectado ao Web3Forms — respostas chegam por e-mail
+     NÃO altere o access_key
+     ============================================================ -->
 <section id="contato">
   <div class="s-label">Booking & Contato</div>
   <h2 class="s-title">Contrate o<br>Coletivo</h2>
@@ -789,9 +732,14 @@
         <p>Disponíveis para festas, festivais, eventos privados e colaborações em todo o Brasil. Entre em contato para disponibilidade, rider técnico e cachê.</p>
       </div>
       <div class="booking-detail">
+        <!-- Edite telefone, localização, abrangência e tipos de evento -->
         <div class="b-item">
           <span class="b-label">WhatsApp / Telefone</span>
           <span class="b-val"><a href="https://wa.me/5553997102674" target="_blank">+55 53 99710-2674</a></span>
+        </div>
+        <div class="b-item">
+          <span class="b-label">Instagram</span>
+          <span class="b-val"><a href="https://www.instagram.com/farsouth053/" target="_blank">@farsouth053</a></span>
         </div>
         <div class="b-item">
           <span class="b-label">Localização Base</span>
@@ -810,6 +758,7 @@
     </div>
     <div class="booking-right">
       <form id="bookingForm">
+        <!-- NÃO altere estas linhas ocultas — são configurações do Web3Forms -->
         <input type="hidden" name="access_key" value="25614fc4-cd3a-401c-b98f-81861981aefa">
         <input type="hidden" name="subject" value="Nova Proposta de Show — Far South 053">
         <input type="hidden" name="from_name" value="Site Far South 053">
@@ -822,7 +771,14 @@
           <div class="form-group"><label>Telefone / WhatsApp</label><input type="tel" name="telefone" placeholder="+55 (53) 9 9999-9999"></div>
           <div class="form-group">
             <label>Tipo de Evento</label>
-            <select name="tipo_evento"><option value="" disabled selected>Selecione...</option><option>Festival</option><option>Balada / Show</option><option>Evento Privado</option><option>Colaboração Musical</option><option>Outro</option></select>
+            <select name="tipo_evento">
+              <option value="" disabled selected>Selecione...</option>
+              <option>Festival</option>
+              <option>Balada / Show</option>
+              <option>Evento Privado</option>
+              <option>Colaboração Musical</option>
+              <option>Outro</option>
+            </select>
           </div>
         </div>
         <div class="form-row">
@@ -836,16 +792,22 @@
   </div>
 </section>
 
+<!-- ============================================================
+     FOOTER
+     Edite os links das redes sociais (href)
+     ============================================================ -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
       <img src="Far_south.png" alt="Far South 053">
       <div class="footer-tagline">Extremo Sul · Rio Grande do Sul · Brasil</div>
     </div>
+    <!-- Links do rodapé — troque os href="#" pelos links reais -->
     <div class="footer-links">
       <a href="https://www.youtube.com/playlist?list=PLL97z0NMKWHbwdwZxBWOBtrBN_CW-bGnP" target="_blank">YouTube</a>
+      <a href="https://www.instagram.com/farsouth053/" target="_blank">Instagram</a>
+      <a href="https://linktr.ee/farsouth053" target="_blank">Linktree</a>
       <a href="#" target="_blank">Spotify</a>
-      <a href="#" target="_blank">Instagram</a>
       <a href="https://wa.me/5553997102674" target="_blank">WhatsApp</a>
     </div>
   </div>
@@ -856,42 +818,30 @@
 </footer>
 
 <script>
+  // Efeito parallax suave no hero ao rolar
   const hero = document.getElementById('hero');
   window.addEventListener('scroll', () => {
     if (window.scrollY < window.innerHeight) hero.style.transform = `translateY(${window.scrollY * 0.28}px)`;
   }, { passive: true });
 
-  // Web3Forms submission
+  // Formulário de booking — envia via Web3Forms e exibe feedback
   document.getElementById('bookingForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
     btn.textContent = 'Enviando...';
     btn.disabled = true;
-
     const formData = new FormData(this);
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
+    const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
     const data = await response.json();
-
     if (data.success) {
       btn.textContent = 'Proposta Enviada ✓';
       btn.style.background = 'linear-gradient(135deg,#555 0%,#888 50%,#444 100%)';
       this.reset();
-      setTimeout(() => {
-        btn.textContent = 'Enviar Proposta';
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 4000);
+      setTimeout(() => { btn.textContent = 'Enviar Proposta'; btn.style.background = ''; btn.disabled = false; }, 4000);
     } else {
       btn.textContent = 'Erro — Tente novamente';
       btn.style.background = 'linear-gradient(135deg,#5a1a1a 0%,#8a2a2a 100%)';
-      setTimeout(() => {
-        btn.textContent = 'Enviar Proposta';
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
+      setTimeout(() => { btn.textContent = 'Enviar Proposta'; btn.style.background = ''; btn.disabled = false; }, 3000);
     }
   });
 
@@ -900,14 +850,9 @@
     card.addEventListener('click', function() {
       const vid = this.dataset.vid;
       const title = this.dataset.title;
-      const featured = document.getElementById('featuredIframe');
-      const featuredTitle = document.getElementById('featuredTitle');
-      // Carrega o vídeo no player grande com autoplay
-      featured.src = `https://www.youtube.com/embed/${vid}?rel=0&modestbranding=1&autoplay=1`;
-      featuredTitle.textContent = title;
-      // Rola para o topo da seção de clipes
+      document.getElementById('featuredIframe').src = `https://www.youtube.com/embed/${vid}?rel=0&modestbranding=1&autoplay=1`;
+      document.getElementById('featuredTitle').textContent = title;
       document.getElementById('clipes').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Remove overlay para permitir play direto no card também
       this.querySelector('.clipe-overlay').classList.add('hidden');
     });
   });
