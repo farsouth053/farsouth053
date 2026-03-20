@@ -88,14 +88,9 @@
   .membro-card { position:relative; overflow:hidden; background:var(--gray-dark); aspect-ratio:3/4; cursor:default; }
   .membro-card-inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:24px; background:linear-gradient(to top,rgba(6,6,6,0.95) 0%,rgba(6,6,6,0.3) 50%,transparent 100%); transition:background 0.3s; }
   .membro-card:hover .membro-card-inner { background:linear-gradient(to top,rgba(6,6,6,0.98) 0%,rgba(6,6,6,0.5) 60%,transparent 100%); }
-  .m-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
-  .m-bg-daruma { background:linear-gradient(160deg,#0d0d0d 0%,#1c1c1c 100%); }
-  .m-bg-tk { background:linear-gradient(160deg,#0a0a0a 0%,#181818 100%); }
-  .m-bg-coast { background:linear-gradient(160deg,#0e0e0e 0%,#1a1a1a 100%); }
-  .m-bg-dirua { background:linear-gradient(160deg,#0b0b0b 0%,#171717 100%); }
-  .m-bg-garcia { background:linear-gradient(160deg,#0d0d0d 0%,#1c1c1c 100%); }
-  .m-bg-hooligan { background:linear-gradient(160deg,#090909 0%,#161616 100%); }
-  .m-bg-saad { background:linear-gradient(160deg,#0c0c0c 0%,#1b1b1b 100%); }
+  .m-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:#0d0d0d; }
+  .m-bg img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top center; filter:grayscale(20%) contrast(1.05); transition:transform 0.5s ease,filter 0.4s ease; }
+  .membro-card:hover .m-bg img { transform:scale(1.04); filter:grayscale(0%) contrast(1.08); }
   .m-initial { font-family:'Bebas Neue',sans-serif; font-size:140px; color:rgba(255,255,255,0.04); line-height:1; letter-spacing:-0.03em; position:absolute; bottom:-10px; right:-10px; }
   .membro-name { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:0.08em; line-height:1; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
   .membro-role { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.3em; color:var(--gray-light); text-transform:uppercase; margin-top:4px; }
@@ -479,7 +474,7 @@
   <div class="membros-grid">
 
     <div class="membro-card">
-      <div class="m-bg m-bg-daruma"><div class="m-initial">D</div></div>
+      <div class="m-bg"><img src="fotos/daruma.jpeg" alt="Daruma OG"></div>
       <div class="membro-card-inner">
         <div class="membro-name">Daruma OG</div>
         <div class="membro-role">MC · Diretor Executivo</div>
@@ -488,7 +483,7 @@
     </div>
 
     <div class="membro-card">
-      <div class="m-bg m-bg-tk"><div class="m-initial">T</div></div>
+      <div class="m-bg"><img src="fotos/tkmiles.png" alt="TK Miles"></div>
       <div class="membro-card-inner">
         <div class="membro-name">TK Miles</div>
         <div class="membro-role">MC · Rio Grande, BGV</div>
@@ -497,7 +492,7 @@
     </div>
 
     <div class="membro-card">
-      <div class="m-bg m-bg-coast"><div class="m-initial">C</div></div>
+      <div class="m-bg"><img src="fotos/coast.jpg" alt="Coast"></div>
       <div class="membro-card-inner">
         <div class="membro-name">Coast</div>
         <div class="membro-role">MC · Rio Grande / Cassino</div>
@@ -506,7 +501,7 @@
     </div>
 
     <div class="membro-card">
-      <div class="m-bg m-bg-dirua"><div class="m-initial">D</div></div>
+      <div class="m-bg"><img src="fotos/dirua77.jpg" alt="DiRua 77"></div>
       <div class="membro-card-inner">
         <div class="membro-name">DiRua 77</div>
         <div class="membro-role">MC · DJ · Porto Alegre</div>
@@ -515,7 +510,7 @@
     </div>
 
     <div class="membro-card">
-      <div class="m-bg m-bg-garcia"><div class="m-initial">G</div></div>
+      <div class="m-bg"><img src="fotos/garcia.png" alt="Garciarea7"></div>
       <div class="membro-card-inner">
         <div class="membro-name">Garciarea7</div>
         <div class="membro-role">MC · Rio Grande</div>
@@ -524,7 +519,7 @@
     </div>
 
     <div class="membro-card">
-      <div class="m-bg m-bg-hooligan"><div class="m-initial">Y</div></div>
+      <div class="m-bg"><img src="fotos/hooligan.jpg" alt="Yung Hooligan"></div>
       <div class="membro-card-inner">
         <div class="membro-name">Yung Hooligan</div>
         <div class="membro-role">MC · Mais do que Rapper</div>
@@ -533,7 +528,7 @@
     </div>
 
     <div class="membro-card wide">
-      <div class="m-bg m-bg-saad" style="height:100%;"><div class="m-initial" style="font-size:200px;">S</div></div>
+      <div class="m-bg"><img src="fotos/saad.jpg" alt="SAAD" style="object-position:center center;"></div>
       <div class="membro-card-inner">
         <div class="membro-name" style="font-size:36px;">SAAD</div>
         <div class="membro-role">Produtor Musical · Compositor · +10 anos de experiência</div>
