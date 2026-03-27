@@ -35,25 +35,27 @@
 
   /* ─── HERO (seção inicial) ─── */
   #hero { position:relative; height:100vh; min-height:700px; display:flex; flex-direction:column; justify-content:flex-end; padding:0 52px 90px; overflow:hidden; }
-  .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 55% 70% at 65% 35%,rgba(140,140,140,0.07) 0%,transparent 65%),radial-gradient(ellipse 35% 50% at 15% 85%,rgba(60,60,60,0.12) 0%,transparent 55%),#060606; }
-  .hero-bg::before { content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(-48deg,transparent,transparent 70px,rgba(255,255,255,0.012) 70px,rgba(255,255,255,0.012) 71px); }
-  .scanline { position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(200,200,200,0.5) 40%,rgba(255,255,255,0.8) 50%,rgba(200,200,200,0.5) 60%,transparent); animation:scan 5s linear infinite; opacity:0; }
+  /* Vídeo de background em loop */
+  .hero-video-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0.18; z-index:0; pointer-events:none; }
+  .hero-bg { position:absolute; inset:0; z-index:1; background:radial-gradient(ellipse 55% 70% at 65% 35%,rgba(140,140,140,0.07) 0%,transparent 65%),radial-gradient(ellipse 35% 50% at 15% 85%,rgba(60,60,60,0.12) 0%,transparent 55%),rgba(6,6,6,0.72); }
+  .hero-bg::before { content:''; position:absolute; inset:0; z-index:1; background-image:repeating-linear-gradient(-48deg,transparent,transparent 70px,rgba(255,255,255,0.012) 70px,rgba(255,255,255,0.012) 71px); }
+  .scanline { position:absolute; top:0; left:0; right:0; height:1px; z-index:3; background:linear-gradient(90deg,transparent,rgba(200,200,200,0.5) 40%,rgba(255,255,255,0.8) 50%,rgba(200,200,200,0.5) 60%,transparent); animation:scan 5s linear infinite; opacity:0; }
   @keyframes scan { 0%{top:0;opacity:0} 3%{opacity:0.35} 97%{opacity:0.35} 100%{top:100%;opacity:0} }
   /* Logo flutuante no hero — mix-blend-mode:screen remove o fundo branco da imagem */
-  .hero-logo-img { position:absolute; right:6%; top:50%; transform:translateY(-50%); width:min(420px,40vw); opacity:0.88; mix-blend-mode:screen; user-select:none; pointer-events:none; animation:logoFloat 6s ease-in-out infinite; }
+  .hero-logo-img { position:absolute; right:6%; top:50%; transform:translateY(-50%); width:min(420px,40vw); opacity:0.88; mix-blend-mode:screen; user-select:none; pointer-events:none; animation:logoFloat 6s ease-in-out infinite; z-index:2; }
   @keyframes logoFloat { 0%,100%{transform:translateY(-55%) scale(1)} 50%{transform:translateY(-58%) scale(1.02)} }
-  .hero-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.45em; color:var(--gray-light); text-transform:uppercase; margin-bottom:18px; opacity:0; animation:riseUp 0.9s ease 0.3s forwards; }
-  .hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(72px,15vw,200px); line-height:0.82; letter-spacing:-0.01em; opacity:0; animation:riseUp 0.9s ease 0.5s forwards; }
+  .hero-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.45em; color:var(--gray-light); text-transform:uppercase; margin-bottom:18px; opacity:0; animation:riseUp 0.9s ease 0.3s forwards; position:relative; z-index:2; }
+  .hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(72px,15vw,200px); line-height:0.82; letter-spacing:-0.01em; opacity:0; animation:riseUp 0.9s ease 0.5s forwards; position:relative; z-index:2; }
   .hero-title .t1 { display:block; background:var(--metal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
   .hero-title .t2 { display:block; color:transparent; -webkit-text-stroke:1px rgba(160,160,160,0.45); padding-left:4%; }
-  .hero-desc { margin-top:30px; max-width:560px; font-size:15px; line-height:1.75; color:#888; opacity:0; animation:riseUp 0.9s ease 0.7s forwards; }
-  .hero-actions { display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; opacity:0; animation:riseUp 0.9s ease 0.9s forwards; }
+  .hero-desc { margin-top:30px; max-width:560px; font-size:15px; line-height:1.75; color:#888; opacity:0; animation:riseUp 0.9s ease 0.7s forwards; position:relative; z-index:2; }
+  .hero-actions { display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; opacity:0; animation:riseUp 0.9s ease 0.9s forwards; position:relative; z-index:2; }
   /* Botões */
   .btn-main { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:0.32em; text-transform:uppercase; font-weight:700; padding:15px 40px; background:var(--metal); color:#080808; text-decoration:none; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:filter 0.2s; display:inline-block; }
   .btn-main:hover { filter:brightness(1.12); }
   .btn-ghost { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:0.32em; text-transform:uppercase; font-weight:600; padding:15px 40px; background:transparent; color:var(--silver); text-decoration:none; border:1px solid rgba(160,160,160,0.28); clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:all 0.2s; display:inline-block; }
   .btn-ghost:hover { border-color:var(--silver); color:var(--white); }
-  .hero-scroll-hint { position:absolute; bottom:36px; right:52px; display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:fadeIn 1s ease 1.4s forwards; }
+  .hero-scroll-hint { position:absolute; bottom:36px; right:52px; display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:fadeIn 1s ease 1.4s forwards; z-index:2; }
   .hero-scroll-hint span { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:0.35em; color:rgba(120,120,120,0.6); text-transform:uppercase; writing-mode:vertical-rl; }
   .scroll-bar { width:1px; height:55px; background:linear-gradient(to bottom,rgba(150,150,150,0.5),transparent); animation:pulse 2.2s ease infinite; }
   @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
@@ -317,6 +319,10 @@
 </div>
 
 <section id="hero">
+  <!-- Vídeo de fundo em loop — arquivo bg.mp4 na raiz do repositório -->
+  <video class="hero-video-bg" autoplay muted loop playsinline preload="auto">
+    <source src="bg.mp4" type="video/mp4">
+  </video>
   <div class="hero-bg"></div>
   <div class="scanline"></div>
   <img class="hero-logo-img" src="Far_south.png" alt="Far South 053">
@@ -353,7 +359,7 @@
   <div class="sobre-grid">
     <div class="sobre-text">
       <h2 class="s-title" style="margin-bottom:36px;">Do Extremo<br>Sul Pro Mundo</h2>
-      <p><strong>Somos</strong> um coletivo musical independente, baseado no extremo sul do Rio Grande do Sul, na cidade de Rio Grande 053. Construído de forma orgânica por diversos artistas, tanto músicos quanto artistas gráficos.</p>
+      <p><strong>Far South 053</strong> é um coletivo musical independente, atuante no extremo sul do Rio Grande do Sul. Construído de forma orgânica por diversos artistas — tanto músicos quanto artistas gráficos.</p>
       <p>Nosso grupo traz referências de diversas vertentes do Hip Hop, como o <strong>Trap, Plug, Michigan, UK Drill, R&B</strong> e muito mais. Apresentamos um comportamento único, discreto e impactante.</p>
       <p>Visando o crescimento e a valorização da cultura Hip Hop no estado, nosso objetivo é mudar o peso na balança e mostrar que <strong>é possível pra quem vem de fora do eixo</strong>.</p>
       <blockquote>Não somos todos os mesmos,<br>mas somos todos um só!</blockquote>
@@ -403,7 +409,7 @@
       <div class="membro-card-inner">
         <div class="membro-name">Daruma OG</div>
         <div class="membro-role">MC · Diretor Executivo</div>
-        <div class="membro-desc">Nascido e criado no Rio de Janeiro, atualmente em Rio Grande/RS. Versatilidade como marca, Drill e Trap.</div>
+        <div class="membro-desc">Nascido e criado no Rio de Janeiro, atualmente em Rio Grande/RS. Versatilidade como marca — Drill, Grime e Trap.</div>
       </div>
     </div>
 
@@ -413,7 +419,7 @@
       <div class="membro-card-inner">
         <div class="membro-name">TK Miles</div>
         <div class="membro-role">MC · Rio Grande, BGV</div>
-        <div class="membro-desc">Estética versátil no Plug/Trap. Último single: "Dicotomia". Do BGV pro Mundo.</div>
+        <div class="membro-desc">Estética versátil no Plug/Trap. Último single: "Dicotomia". Faz a onda onde a vibe surgir.</div>
       </div>
     </div>
 
@@ -433,7 +439,7 @@
       <div class="membro-card-inner">
         <div class="membro-name">DiRua 77</div>
         <div class="membro-role">MC · DJ · Porto Alegre</div>
-        <div class="membro-desc">Arte urbana, skate e rap desde 2013. Sobrevivo ou morro tentando.</div>
+        <div class="membro-desc">Arte urbana, skate e rap desde 2013. DJ residente da extinta festa Hype no Cassino.</div>
       </div>
     </div>
 
@@ -459,11 +465,11 @@
 
     <!-- SAAD -->
     <div class="membro-card">
-      <div class="m-bg"><img src="fotos/saad.jpeg" alt="SAAD"></div>
+      <div class="m-bg"><img src="fotos/saad.jpg" alt="SAAD"></div>
       <div class="membro-card-inner">
         <div class="membro-name">SAAD</div>
         <div class="membro-role">Produtor Musical · Compositor</div>
-        <div class="membro-desc">Não cria apenas instrumentais, desenvolve atmosferas, conceito e direção sonora, transformando sentimento em som.</div>
+        <div class="membro-desc">+10 anos de experiência. Não cria apenas instrumentais — desenvolve atmosferas, conceito e direção sonora, transformando sentimento em som.</div>
       </div>
     </div>
 
@@ -654,13 +660,12 @@
     </div>
     <div class="music-info">
       <h3>Ouça o Movimento</h3>
-      <p>Do extremo sul do Brasil pro mundo. A identidade está no conjunto.</p>
+      <p>Do extremo sul do Brasil pras plataformas do mundo. Um coletivo que não se limita a um único estilo — a identidade está no conjunto.</p>
       <div class="music-genre-list">
-        <div class="music-genre-item"><span class="g-name">UK Drill</span><span class="g-desc"></span></div>
-        <div class="music-genre-item"><span class="g-name">Trap</span><span class="g-desc"></span></div>
-        <div class="music-genre-item"><span class="g-name">Michigan / Plug</span><span class="g-desc"></span></div>
-        <div class="music-genre-item"><span class="g-name">Grime</span><span class="g-desc"></span></div>
-        <div class="music-genre-item"><span class="g-name">R&B</span><span class="g-desc"></span></div>
+        <div class="music-genre-item"><span class="g-name">UK Drill</span><span class="g-desc">Batidas pesadas, letras cruas</span></div>
+        <div class="music-genre-item"><span class="g-name">Trap</span><span class="g-desc">Hi-hats frenéticos, flows duros</span></div>
+        <div class="music-genre-item"><span class="g-name">Michigan / Plug</span><span class="g-desc">Melodia e atitude</span></div>
+        <div class="music-genre-item"><span class="g-name">R&B / Grime</span><span class="g-desc">Versatilidade sem fronteiras</span></div>
       </div>
       <!-- Troque os href="#" pelo link real de cada plataforma -->
       <div class="stream-platforms">
@@ -750,7 +755,7 @@
         </div>
         <div class="b-item">
           <span class="b-label">Tipos de Evento</span>
-          <span class="b-val">Festivais · Casas noturnas · Eventos Privados</span>
+          <span class="b-val">Festivais · Baladas · Eventos Privados</span>
         </div>
       </div>
       <a href="https://wa.me/5553997102674" target="_blank" class="btn-main" style="text-align:center;">Chamar no WhatsApp</a>
